@@ -36,7 +36,7 @@ jobs:
       run: npm install
 
     - name: Run FrontEndLint
-      run: npm run lint --prefix /recipe-frontend/
+      run: npm run lint --prefix base/recipe-frontend/
 
 
 #    - run: npm ci
