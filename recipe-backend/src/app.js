@@ -17,6 +17,7 @@ app.use((error, req, res, next) => {
 	res.status(500).send('Something broke!');
 });
 
+start(port);
 
 function start(port) {
   return app.listen(port, () => {

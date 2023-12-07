@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 /* const data = fs.readFile(path.join(__dirname, '../mockDB.json'), 'utf8', (err, data) => {
-    //console.log(data);
+	//console.log(data);
 })
  */
 exports.signupUserModel = async (name, email, password) => {
@@ -10,18 +10,7 @@ exports.signupUserModel = async (name, email, password) => {
 
 	try {
 		const data = await new Promise((resolve, reject) => {
-			// Funktion, um einen User das Jason File zu schreiben
-			// fs.writeFile(
-			// 	path.join(__dirname, '../test.json'),
-			// 	JSON.stringify({ user: [user] }),
-			// 	(err) => {
-			// 		if (err) {
-			// 			reject(err);
-			// 		} else {
-			// 			resolve();
-			// 		}
-			// 	}
-			// );
+
 			fs.readFile(
 				path.join(__dirname, '../mockDB.json'),
 				'utf8',
@@ -49,8 +38,32 @@ exports.signupUserModel = async (name, email, password) => {
 		if (emailExists) {
 			return null;
 		} else {
-			console.log('User kann angelegt werden!');
-			return { name, email, password };
+			console.log('User wird angelegt!');
+
+			let id = users.length + 1;
+
+			let newUser = {
+				"id": id,
+				"name": name,
+				"email": email,
+				"password": password
+			};
+
+			users.push(newUser);
+
+			// Save user to mockDB.json
+			fs.writeFile(
+				path.join(__dirname, '../mockDB.json'),
+				JSON.stringify({ user: users }),
+				(err) => {
+					if (err) {
+						reject(err);
+					} else {
+						resolve();
+					}
+				}
+			);
+			return { name, email, password }; 
 		}
 	} catch (error) {
 		console.error('Fehler beim Lesen der Datei:', error);
