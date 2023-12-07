@@ -1,26 +1,22 @@
 'use client';
-
 import { useState } from 'react';
 import axios from 'axios';
 import {NavBar} from "../../components/NavBar";
-import Login from "../../components/Login";
 
-function SignupForm() {
-
-	const [name, setName] = useState('');
+function LoginForm() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [confirmPassword, setConfirmPassword] = useState('');
+
+	// console.log(name, email, password, confirmPassword);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		const response = await axios.post('http://localhost:5000/auth/signup', {
-			name,
-			email,
-			password,
-			confirmPassword,
+		const response = await axios.post('http://localhost:5000/auth/login', {
+			email: email,
+			password: password,
 		});
+		console.log('[SignupForm] handleSubmit response: ', response);
 
 		if (response.data.success) {
 			// Weiterleiten zum Dashboard oder einer anderen Seite
@@ -30,22 +26,11 @@ function SignupForm() {
 	};
 
 	return (
-		<>
 		<form
 			onSubmit={handleSubmit}
 			className='border-2 border-gray-300 px-10 py-5 bg-gray-100'
 		>
 			<div className='flex flex-col gap-2'>
-				<label className='flex flex-col'>
-					Name:
-					<input
-						type='text'
-						value={name}
-						onChange={(e) => setName(e.target.value)}
-						placeholder='Your Name:'
-						required
-					/>
-				</label>
 				<label className='flex flex-col'>
 					Email:
 					<input
@@ -53,7 +38,7 @@ function SignupForm() {
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 						placeholder='Your Email:'
-						required
+						// required
 					/>
 				</label>
 				<label className='flex flex-col'>
@@ -66,28 +51,15 @@ function SignupForm() {
 						required
 					/>
 				</label>
-				<label className='flex flex-col'>
-					Confirm Password:
-					<input
-						type='password'
-						value={confirmPassword}
-						onChange={(e) => setConfirmPassword(e.target.value)}
-						placeholder='Confirm Password:'
-						required
-					/>
-				</label>
 				<button
 					type='submit'
 					className='group underline rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30'
 				>
-					Sign Up
+					Log In
 				</button>
 			</div>
 		</form>
-			<Login/>
-		</>
-
 	);
 }
 
-export default SignupForm;
+export default LoginForm;

@@ -20,13 +20,10 @@ export default function Login() {
 	return (
 		<>
 			<div className='flex flex-col gap-8 '>
-				<div className='text-center'>Not signed in </div>
-
-				<SignupForm />
 				<div className='text-center'>
 					<button
 						className='group underline rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30'
-						onClick={() => signIn('github')}
+						onClick={async () => await signIn('github').then(history.push('/'))}
 					>
 						Sign in with Github
 					</button>
