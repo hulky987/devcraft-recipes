@@ -33,10 +33,10 @@ jobs:
         cache: 'npm'
 
     - name: Install Dependencies
-      run: npm install
+      run: npm install --prefix recipe-frontend/
 
-    - name: Run ESLint
-      run: npm run lint
+    - name: Run FrontEndLint
+      run: npm run lint --prefix recipe-frontend/
 
 
 #    - run: npm ci
