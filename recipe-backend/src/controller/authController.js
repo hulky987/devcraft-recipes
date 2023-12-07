@@ -1,24 +1,30 @@
-const {signupUserModel} = require('../models/userModel');
+const { signupUserModel } = require('../models/userModel');
 
 exports.signupUser = async (req, res) => {
-    try {
-        const {name, email, password} = req.body;
-        
-        if (!name || !email || !password ) {
-            return res.status(400).json({message: 'Bitte alle Felder ausfüllen!'})
-        }
+	console.log('[authController.js] signupUser: ', req.body);
+	try {
+		const { name, email, password } = req.body;
 
-        const newUser = await signupUserModel(name, email, password);
+		if (!name || !email || !password) {
+			return res
+				.status(400)
+				.json({ message: 'Bitte alle Felder ausfüllen!' });
+		}
 
-        if (!newUser){
-            return res.status(409).json({message: 'Es existiert bereits ein User mit dieser E-Mail!'});
-        }
+		const newUser = await signupUserModel(name, email, password);
 
-        res.status(201).json({message: 'User wurde erfolgreich erstellt!', 
-        newUser: {name: newUser.name, email: newUser.email}});
+		if (!newUser) {
+			return res.status(409).json({
+				message: 'Es existiert bereits ein User mit dieser E-Mail!',
+			});
+		}
 
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({message: 'Internal Server Error!'});
-    }
-}
+		res.status(201).json({
+			message: 'User wurde erfolgreich erstellt!',
+			newUser: { name: newUser.name, email: newUser.email },
+		});
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({ message: 'Internal Server Error!' });
+	}
+};
