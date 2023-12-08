@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 exports.signupUser = async (req, res) => {
 	console.log('[authController.js] signupUser: ', req.body);
 	try {
-		const { name, email, password } = req.body;
+		const { name, email, password = 'placeholder', loginMethod } = req.body;
 
 		// Überprüfe, ob alle Felder ausgefüllt sind
 		if (!name || !email || !password) {
@@ -14,7 +14,12 @@ exports.signupUser = async (req, res) => {
 		}
 
 		// Erstelle einen neuen Benutzer
-		const newUser = await signupUserModel(name, email, password);
+		const newUser = await signupUserModel(
+			name,
+			email,
+			password,
+			loginMethod
+		);
 
 		// Wenn der Benutzer nicht erstellt wurde (weil die E-Mail bereits existiert)
 		if (!newUser) {

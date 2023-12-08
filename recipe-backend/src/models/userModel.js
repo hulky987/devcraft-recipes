@@ -3,68 +3,14 @@ const path = require('path');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-// 	try {
-// 		const data = await new Promise((resolve, reject) => {
-// 			fs.readFile(
-// 				path.join(__dirname, '../mockDB.json'),
-// 				'utf8',
-// 				(err, data) => {
-// 					if (err) {
-// 						reject(err);
-// 					} else {
-// 						resolve(data);
-// 					}
-// 				}
-// 			);
-// 		});
-
-// 		const users = JSON.parse(data).user;
-
-// 		let emailExists = false;
-
-// 		for (const user of users) {
-// 			if (user.email === email) {
-// 				emailExists = true;
-// 				break;
-// 			}
-// 		}
-
-// 		if (emailExists) {
-// 			return null;
-// 		} else {
-// 			console.log('User wird angelegt!');
-
-// 			let id = users.length + 1;
-
-// 			let newUser = {
-// 				id: id,
-// 				name: name,
-// 				email: email,
-// 				password: password,
-// 			};
-
-// 			users.push(newUser);
-
-// 			// Save user to mockDB.json
-// 			fs.writeFile(
-// 				path.join(__dirname, '../mockDB.json'),
-// 				JSON.stringify({ user: users }, null, 2),
-// 				(err) => {
-// 					if (err) {
-// 						reject(err);
-// 					} else {
-// 						resolve();
-// 					}
-// 				}
-// 			);
-// 			return { name, email, password };
-// 		}
-// 	} catch (error) {
-// 		console.error('Fehler beim Lesen der Datei:', error);
-// 	}
-// };
-
-exports.signupUserModel = async (name, email, password) => {
+exports.signupUserModel = async (name, email, password, loginMethod) => {
+	console.log(
+		'[userModel.js] signupUserModel: ',
+		name,
+		email,
+		password,
+		loginMethod
+	);
 	try {
 		// Lese die Daten aus der mockDB.json Datei
 		const data = await new Promise((resolve, reject) => {
@@ -112,6 +58,7 @@ exports.signupUserModel = async (name, email, password) => {
 				name: name,
 				email: email,
 				password: hashedPassword,
+				loginMethod: loginMethod,
 			};
 
 			// Füge den neuen Benutzer zur Benutzerliste hinzu
