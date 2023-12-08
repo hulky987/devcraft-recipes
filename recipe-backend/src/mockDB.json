@@ -1,88 +1,22 @@
 {
   "user": [
     {
-      "id": 1,
-      "name": "User1",
-      "email": "user1@web.de",
-      "password": "user1"
+      "name": "User 1",
+      "email": "User1@email",
+      "password": "123456"
     },
     {
       "id": 2,
-      "name": "User2",
-      "email": "user2@web.de",
-      "password": "user2"
+      "name": "User 2",
+      "email": "User2@web.de",
+      "password": "$2b$10$jd0F32CNF8HoLkgIbINyreDucSA/lscOtKSDaKyWibd4S9752R66W"
     },
     {
       "id": 3,
-      "name": "User3",
-      "email": "user3@web.de",
-      "password": "user3"
-    },
-    {
-      "id": 4,
-      "name": "User4",
-      "email": "user4@web.de",
-      "password": "user4"
-    },
-    {
-      "id": 5,
-      "name": "User5",
-      "email": "user5@web.de",
-      "password": "user5"
-    },
-    {
-      "id": 6,
-      "name": "User6",
-      "email": "user6@web.de",
-      "password": "user6"
-    },
-    {
-      "id": 7,
-      "name": "User7",
-      "email": "user7@web.de",
-      "password": "user7"
-    },
-    {
-      "id": 8,
-      "name": "User8",
-      "email": "user8@web.de",
-      "password": "$2b$10$JgQfH4PkZbz3rW2EHk4nG.dl2hDU7EwMCOmJapLi.fp.Pe553a2nC"
-    },
-    {
-      "id": 9,
-      "name": "User9",
-      "email": "User9@web.de",
-      "password": "$2b$10$MvAudVTM0iul8eDti2/Z1OyN0qZxl2PPAW./M8VTwKeXbhCqDnCS."
-    },
-    {
-      "id": 10,
-      "name": "User10",
-      "email": "User10@web.de",
-      "password": "$2b$10$zlusqBgmkeemmImbyzC9HOzLju70s52yTBIRKngl4rP9lN6gPitZ."
-    },
-    {
-      "id": 11,
-      "name": "User11",
-      "email": "User11@web.de",
-      "password": "$2b$10$K7p0pG.SmdoTubp/WRRHH.LiAAdFD0S7EW4nBG14SmoCO5oEyArqu"
-    },
-    {
-      "id": 12,
-      "name": "User12",
-      "email": "User12@web.de",
-      "password": "$2b$10$jgb3hd8iDeYC9wQbXYYK7e2k3IS0tGxIJIm6Rbavi9qs6Y1KVhbum"
-    },
-    {
-      "id": 13,
-      "name": "User13",
-      "email": "User13@web.de",
-      "password": "$2b$10$SidUvVqj9MiinCtFg7vS7uEK2mHFpzbSC/3vhm8ndsODWmtl2WuSa"
-    },
-    {
-      "id": 14,
-      "name": "User14",
-      "email": "User14@web.de",
-      "password": "$2b$10$zBoR3EKiyxqRWBN8vcEa/OipEw4I43jecMhmNYKDFYla6umso9aRy"
+      "name": "Daniel Bauer",
+      "email": "dan717@gmx.de",
+      "password": "$2b$10$T9DApnYyQ6AuIdKlKYQJy.Kz2YuyaGvVXvNWAUzaIdhoKqhNctMv.",
+      "loginMethod": "github"
     }
   ]
 }
