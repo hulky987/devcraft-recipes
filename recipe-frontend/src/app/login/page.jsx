@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import axios from 'axios';
-import {NavBar} from "../../components/NavBar";
+import { NavBar } from '../../components/NavBar';
 
 function LoginForm() {
 	const [email, setEmail] = useState('');
@@ -48,7 +48,7 @@ function LoginForm() {
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 						placeholder='Your Password:'
-						required
+						// required
 					/>
 				</label>
 				<button

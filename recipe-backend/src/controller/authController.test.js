@@ -1,38 +1,38 @@
-const {beforeAll,test,expect, describe, afterAll} = require('@jest/globals');
-const {signupUser} = require('./authController');
+const {
+	beforeAll,
+	test,
+	expect,
+	describe,
+	afterAll,
+} = require('@jest/globals');
+const { signupUser } = require('./authController');
 const request = require('supertest');
-const {app, start} = require('../app');
+const { app, start } = require('../app');
 
+describe('signupUser', () => {
+	let server;
+	const port = 5001;
 
+	beforeAll(() => {
+		server = start(port);
+	});
 
+	afterAll(() => {
+		server.close();
+	});
 
-describe("signupUser", () => {
+	test('should return 400 if password is missing', async () => {
+		const req = {
+			body: {
+				name: 'User1',
+				email: 'user1@web.de',
+			},
+		};
 
-    let server
-    const port = 3001
+		// const response = await signupUser(req, {})
 
-    beforeAll(() => {
-        server = start(port)
-    })
+		const response = await request(app).post('/auth/signup').send(req.body);
 
-    afterAll(() => {
-        server.close()
-    })
-
-
-
-    test("should return 400 if password is missing", async () => {
-
-        const req = {
-            body: {
-                name: "User1",
-                email: "user1@web.de"
-            }}
-
-     // const response = await signupUser(req, {})
-
-        const response = await request(app).post('/auth/signup').send(req.body)
-
-        expect(response.status).toBe(400);
-    })})
-
+		expect(response.status).toBe(400);
+	});
+});

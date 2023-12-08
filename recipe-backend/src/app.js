@@ -5,7 +5,7 @@ const authRoutes = require('./routes/authRoutes');
 const express = require('express');
 
 const app = express();
-const port = 5000;
+let port = process.env.NODE_ENV !== 'testserver' ? 5000 : 5001;
 
 // Use cors
 app.use(cors());
@@ -20,9 +20,8 @@ app.use((error, req, res, next) => {
 start(port);
 
 function start(port) {
-  return app.listen(port, () => {
-    return console.log(`Express is listening at http://localhost:${port}`);
-  });
+	return app.listen(port, () => {
+		return console.log(`Express is listening at http://localhost:${port}`);
+	});
 }
-module.exports = {app, start}
-
+module.exports = { app, start };
