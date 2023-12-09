@@ -1,22 +1,8 @@
 {
   "user": [
-    {
-      "name": "User 1",
-      "email": "User1@email",
-      "password": "123456"
-    },
-    {
-      "id": 2,
-      "name": "User 2",
-      "email": "User2@web.de",
-      "password": "$2b$10$jd0F32CNF8HoLkgIbINyreDucSA/lscOtKSDaKyWibd4S9752R66W"
-    },
-    {
-      "id": 3,
-      "name": "Daniel Bauer",
-      "email": "dan717@gmx.de",
-      "password": "$2b$10$T9DApnYyQ6AuIdKlKYQJy.Kz2YuyaGvVXvNWAUzaIdhoKqhNctMv.",
-      "loginMethod": "github"
-    }
+   
+  ],
+  "githubUser": [
+    
   ]
 }

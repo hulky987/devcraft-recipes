@@ -28,12 +28,15 @@ exports.signupUserModel = async (name, email, password, loginMethod) => {
 		});
 
 		// Parse die Benutzer aus den gelesenen Daten
-		const users = JSON.parse(data).user;
+		const userArrays = JSON.parse(data);
 
 		let emailExists = false;
 
+		// Merge localUser und githubUser arrays
+		const allUsers = [...userArrays.user, ...userArrays.githubUser];
+
 		// Durchlaufe alle Benutzer
-		for (const user of users) {
+		for (const user of allUsers) {
 			// Wenn die E-Mail des Benutzers mit der eingegebenen E-Mail übereinstimmt
 			if (user.email === email) {
 				emailExists = true;
@@ -43,18 +46,22 @@ exports.signupUserModel = async (name, email, password, loginMethod) => {
 
 		// Wenn die E-Mail bereits existiert, gib null zurück
 		if (emailExists) {
+			console.log('User existiert bereits!');
 			return null;
 		} else {
 			console.log('User wird angelegt!');
 
-			let id = users.length + 1;
+			let localUserid = userArrays.user.length + 1;
+			let githubUserid = userArrays.githubUser.length + 1;
 
 			// Hashe das Passwort, bevor es in der Datenbank gespeichert wird
 			const hashedPassword = await bcrypt.hash(password, saltRounds);
 
+			const isGithubUser = loginMethod === 'github';
+
 			// Erstelle ein neues Benutzerobjekt
 			let newUser = {
-				id: id,
+				id: isGithubUser ? githubUserid : localUserid,
 				name: name,
 				email: email,
 				password: hashedPassword,
@@ -62,20 +69,29 @@ exports.signupUserModel = async (name, email, password, loginMethod) => {
 			};
 
 			// Füge den neuen Benutzer zur Benutzerliste hinzu
-			users.push(newUser);
+			isGithubUser ? userArrays.githubUser.push(newUser) : userArrays.user.push(newUser);
 
 			// Speichere den neuen Benutzer in der mockDB.json Datei
-			fs.writeFile(
-				path.join(__dirname, '../mockDB.json'),
-				JSON.stringify({ user: users }, null, 2),
-				(err) => {
-					if (err) {
-						reject(err);
-					} else {
-						resolve();
+			new Promise((resolve, reject) => {
+				fs.writeFile(
+					path.join(__dirname, '../mockDB.json'),
+					JSON.stringify(userArrays, null, 2),
+					(err) => {
+						if (err) {
+							reject(err);
+						} else {
+							resolve();
+						}
 					}
-				}
-			);
+				);
+			})
+				.then(() => {
+					console.log('Neuer User wurde erfolgreich angelegt!');
+				})
+				.catch((err) => {
+					console.error('Fehler beim Schreiben der Datei aufgetreten:', err);
+				});
+
 			// Gib das neue Benutzerobjekt zurück
 			return { name, email, password: hashedPassword };
 		}
