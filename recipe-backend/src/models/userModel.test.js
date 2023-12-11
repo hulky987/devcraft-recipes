@@ -1,17 +1,9 @@
-const fs = require('fs');
 const {
-    beforeAll,
     test,
     expect,
     describe,
-    afterAll,
 } = require('@jest/globals');
-// const { signupUser } = require('./authController');
-const request = require('supertest');
-// const { app, start } = require('../app');
-const path = require('path');
 const {getUserJson, signupUserModel, loginUserModel} = require("./userModel");
-const {app} = require("../app");
 
 describe('login if possible', () => {
 
