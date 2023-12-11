@@ -13,16 +13,16 @@ const { app, start } = require('../app');
 const path = require('path');
 
 describe('signupUser for local signup', () => {
-	let server;
-	const port = 5001;
-
-	beforeAll(() => {
-		server = start(port);
-	});
-
-	afterAll(() => {
-		server.close();
-	});
+	// let server;
+	// const port = 6000;
+	//
+	// beforeAll(() => {
+	// 	server = start(port);
+	// });
+	//
+	// afterAll(() => {
+	// 	server.close();
+	// });
 
 	test('should return 400 if password is missing', async () => {
 		const req = {
@@ -31,8 +31,6 @@ describe('signupUser for local signup', () => {
 				loginMethod: "local"
 			},
 		};
-
-		// const response = await signupUser(req, {})
 
 		const response = await request(app).post('/auth/signup').send(req.body);
 
@@ -69,7 +67,8 @@ describe('signupUser for local signup', () => {
 
 		// Parse die Benutzer aus den gelesenen Daten
 		const userArrays = JSON.parse(data);
-		let userNameNumber = userArrays.user.length * 2;
+
+		let userNameNumber = userArrays.user.length * Math.random();
 
 		const req = {
 			body: {
@@ -83,26 +82,14 @@ describe('signupUser for local signup', () => {
 
 		expect(response.status).toBe(201);
 	})
-});
 
-describe('login for Users', () => {
-	let server;
-	const port = 5001;
-
-	beforeAll(() => {
-		server = start(port);
-	});
-
-	afterAll(() => {
-		server.close();
-	});
-
-	test('should return 400 if email is missing', async () => {
+	test('login should return 400 if email is missing', async () => {
 		const req = {
 			body: {
 				name: 'Schlacki',
 				password:"123456",
-				loginMethod: "local"}
+				loginMethod: "local"
+			}
 		};
 
 		const response = await request(app).post('/auth/login').send(req.body);
@@ -111,20 +98,18 @@ describe('login for Users', () => {
 	});
 
 
-	test("should return 401 if credentials are wrong", async () => {
+	test("login should return 401 if credentials are wrong", async () => {
 		const req = {
 			body: {
 				name: 'User1',
 				email: 'user1@web.de',
-				password: "123456",
+				password: "Holadrio",
 				loginMethod: "local"
 			}
 		};
 		const response = await request(app).post('/auth/login').send(req.body);
+
 		expect(response.status).toBe(401);
 
-		});
-
-
-
+	});
 });

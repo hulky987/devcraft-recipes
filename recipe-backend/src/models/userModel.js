@@ -33,7 +33,7 @@ signupUserModel = async (name, email, password, loginMethod) => {
 		const data = await getUserJson();
 
 		// Parse die Benutzer aus den gelesenen Daten
-		const userArrays = JSON.parse(data);
+		const userArrays = await JSON.parse(data);
 
 		let emailExists = false;
 
@@ -108,7 +108,7 @@ signupUserModel = async (name, email, password, loginMethod) => {
 loginUserModel = async (email, password) => {
 	try {
 		// Lese die Daten aus der mockDB.json Datei
-		const data = getUserJson();
+		const data = await getUserJson();
 
 		// Parse die Benutzer aus den gelesenen Daten
 		const users = JSON.parse(data).user;
