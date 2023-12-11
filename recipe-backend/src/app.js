@@ -3,6 +3,7 @@ const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');
 
 const express = require('express');
+require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` });
 
 const app = express();
 let port = process.env.NODE_ENV !== 'testserver' ? 5000 : 5001;
@@ -19,7 +20,6 @@ app.use((error, req, res, next) => {
 
 start(port);
 
-
 function start(port) {
 	return app.listen(port, () => {
 		return console.log(`Express is listening at http://localhost:${port}`);
@@ -30,5 +30,4 @@ function stop(server) {
 	server.close();
 }
 
-
-module.exports = { app, start,stop };
+module.exports = { app, start, stop };
