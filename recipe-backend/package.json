@@ -4,17 +4,19 @@
 	"description": "",
 	"main": "src/app.js",
 	"scripts": {
-		"start": "NODE_ENV=dev nodemon app.js",
+		"start": "cross-env NODE_ENV=dev nodemon app.js",
 		"test": "jest",
 		"see-dev-db": "dotenv -e .env.dev -- npx prisma studio",
 		"see-test-db": "dotenv -e .env.test -- npx prisma studio",
-		"drop-test-db": "dotenv -e .env.test -- ./reset_db-test.sh"
+		"drop-test-db": "dotenv -e .env.test -- ./reset_db-test.sh",
+		"drop-test-db-windows": "dotenv -e .env.test -- powershell ./reset_db-test.ps1"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
 		"cors": "^2.8.5",
+		"cross-env": "^7.0.3",
 		"jest": "^29.7.0",
 		"nodemon": "^3.0.2",
 		"prisma": "^5.7.0",
