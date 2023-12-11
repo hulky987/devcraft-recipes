@@ -5,7 +5,7 @@
   "main": "src/app.js",
   "scripts": {
     "start": "nodemon app.js",
-    "test":  "NODE_ENV=testserver jest --detectOpenHandles"
+    "test":  "jest"
   },
   "keywords": [],
   "author": "",

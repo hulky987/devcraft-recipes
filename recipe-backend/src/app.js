@@ -26,5 +26,9 @@ function start(port) {
 	});
 }
 
+function stop(server) {
+	server.close();
+}
 
-module.exports = { app, start };
+
+module.exports = { app, start,stop };

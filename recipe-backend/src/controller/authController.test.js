@@ -7,7 +7,7 @@ const {
 	describe,
 } = require('@jest/globals');
 const request = require('supertest');
-const { app, start } = require('../app');
+const { app, start, stop } = require('../app');
 const path = require('path');
 
 describe('signupUser for local signup', () => {
@@ -20,21 +20,10 @@ describe('signupUser for local signup', () => {
 	// });
 	//
 	// afterAll(() => {
-	// 	server.close();
+	// 	server.close()
 	// });
 
-	test('should return 400 if password is missing', async () => {
-		const req = {
-			body: {
-				name: 'User1',
-				loginMethod: "local"
-			},
-		};
 
-		const response = await request(app).post('/auth/signup').send(req.body);
-
-		expect(response.status).toBe(400);
-	});
 
 	test("should return 409 if user is already in use ", async () => {
 		const req = {
@@ -47,6 +36,7 @@ describe('signupUser for local signup', () => {
 		const response = await request(app).post('/auth/signup').send(req.body);
 		expect(response.status).toBe(409);
 	})
+
 
 	test("should return 201 if user is successfully created ", async () => {
 
@@ -80,6 +70,19 @@ describe('signupUser for local signup', () => {
 
 		expect(response.status).toBe(201);
 	})
+
+	test('should return 400 if password is missing', async () => {
+		const req = {
+			body: {
+				name: 'User1',
+				loginMethod: "local"
+			},
+		};
+
+		const response = await request(app).post('/auth/signup').send(req.body);
+
+		expect(response.status).toBe(400);
+	});
 
 	test('login should return 400 if email is missing', async () => {
 		const req = {

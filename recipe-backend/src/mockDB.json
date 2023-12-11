@@ -482,6 +482,83 @@
       "email": "user47.93316122730757@web.de",
       "password": "$2b$10$n1SSDIFDtVQhmkZ.i52uUObMutlcwm9rHxMobaIwA48INzpwGq6Im",
       "loginMethod": "local"
+    },
+    {
+      "id": 70,
+      "name": "user52.653259442707785",
+      "email": "user52.653259442707785@web.de",
+      "password": "$2b$10$ORWvUhdyBLBKudmINlT39OsvG47YZz2o6B5R9gpF20.Cqz/rZAd6u",
+      "loginMethod": "local"
+    },
+    {
+      "id": 71,
+      "name": "user66.29308057804154",
+      "email": "user66.29308057804154@web.de",
+      "password": "$2b$10$VV0kRQYkpRgKrISgvMRfGuby8ItfI3hZ9bAHlxpeA0Veo9.92p8jq",
+      "loginMethod": "local"
+    },
+    {
+      "id": 72,
+      "name": "user44.3809746700892",
+      "email": "user44.3809746700892@web.de",
+      "password": "$2b$10$glLWDu4cgDiIU/k5Q2qWuuMeLdMtWGU2xZh8LC9jLSBuntYk9Vkty",
+      "loginMethod": "local"
+    },
+    {
+      "id": 73,
+      "name": "user6.067307018799282",
+      "email": "user6.067307018799282@web.de",
+      "password": "$2b$10$jXZ7bEaV0OKVwGwZv3Us5eQqGqCjTaS/mrjIN/4PmWFVG3.Hpy6Q.",
+      "loginMethod": "local"
+    },
+    {
+      "id": 74,
+      "name": "user10.816935372808027",
+      "email": "user10.816935372808027@web.de",
+      "password": "$2b$10$WTpD0dGi0YPYTar8qseTaub0vSAboxzfsUX28q8IfNm31sPJ4DjpK",
+      "loginMethod": "local"
+    },
+    {
+      "id": 75,
+      "name": "user23.022034947861403",
+      "email": "user23.022034947861403@web.de",
+      "password": "$2b$10$ds/CeOPoU3oEvKdzjGQc/OcUodHOCvPClv/s6RobhY0NjIJdYKR1m",
+      "loginMethod": "local"
+    },
+    {
+      "id": 76,
+      "name": "user4.034874053926485",
+      "email": "user4.034874053926485@web.de",
+      "password": "$2b$10$TJSE0fseeB5wrr8ozMOsY.PyaT5.9yQzFZkB./TXtdQAcZQFKImA2",
+      "loginMethod": "local"
+    },
+    {
+      "id": 77,
+      "name": "user55.90952553255645",
+      "email": "user55.90952553255645@web.de",
+      "password": "$2b$10$2BxmxATw.PvMRcnYY17tTeI0iBvwrYd4ai3IqnkoOmlXf96js3hGm",
+      "loginMethod": "local"
+    },
+    {
+      "id": 78,
+      "name": "user22.118994272710893",
+      "email": "user22.118994272710893@web.de",
+      "password": "$2b$10$d0OXl3QZDAwUyaReNS6ih.LKxj4TJeWV2/r21CxkeWEAAGdSEDcfK",
+      "loginMethod": "local"
+    },
+    {
+      "id": 79,
+      "name": "user56.300218947097626",
+      "email": "user56.300218947097626@web.de",
+      "password": "$2b$10$HKaMnNOOPzQHXEU.C5zE/.1u8ApIknUvcDh0deKR7G7IJUaDgaKSq",
+      "loginMethod": "local"
+    },
+    {
+      "id": 80,
+      "name": "user52.689365444938424",
+      "email": "user52.689365444938424@web.de",
+      "password": "$2b$10$7PLZwUKJ5268fzd3lw7RD.zpyXFSL12iyO6FsXEbrwOx0WLo72EOy",
+      "loginMethod": "local"
     }
   ],
   "githubUser": [
