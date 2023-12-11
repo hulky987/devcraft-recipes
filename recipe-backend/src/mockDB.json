@@ -1,8 +1,97 @@
 {
   "user": [
-   
+    {
+      "id": 1,
+      "name": "user1",
+      "email": "user1@web.de",
+      "password": "$2b$10$yuCgxRKnZgXdtq0TKhPOzOxRUk/xumVVT.a.tuaDf8K00t1uR06hu",
+      "loginMethod": "local"
+    },
+    {
+      "id": 2,
+      "name": "Hans",
+      "email": "Hans@web.de",
+      "password": "$2b$10$.aMhltlmpYdL8BcOKAh9O.sN8DT9ELf31K98896fFKqVuCYV1q0HO",
+      "loginMethod": "local"
+    },
+    {
+      "id": 3,
+      "name": "user4",
+      "email": "user4@web.de",
+      "password": "$2b$10$glRqU7AmE2TtO8nyqFnM4OaRifj6cLz/n4.ul6EdZA3XAZlsVxiTi",
+      "loginMethod": "local"
+    },
+    {
+      "id": 4,
+      "name": "user6",
+      "email": "user6@web.de",
+      "password": "$2b$10$wuMXz9emHDSXkIN.hbVnROim24Ohp3Anp1IZPDZuCBxN4eBwszYlG",
+      "loginMethod": "local"
+    },
+    {
+      "id": 5,
+      "name": "user8",
+      "email": "user8@web.de",
+      "password": "$2b$10$6et7XCGUvYJ7bdO6gS5lGuuIgsRsbRJNNCi8.RtsjaCJjbe.XOBUe",
+      "loginMethod": "local"
+    },
+    {
+      "id": 6,
+      "name": "user10",
+      "email": "user10@web.de",
+      "password": "$2b$10$DaqV.CYmVvEmNDmL45bzL.wi7qN72Aq0ljltSkkW/dwR6HjbHu8ia",
+      "loginMethod": "local"
+    },
+    {
+      "id": 7,
+      "name": "user12",
+      "email": "user12@web.de",
+      "password": "$2b$10$nYxYLwq9OSZ5aCa5Gj7KDusl5UwBKH/Ngz.br/q/lW0rgxuR6zKpK",
+      "loginMethod": "local"
+    },
+    {
+      "id": 8,
+      "name": "user14",
+      "email": "user14@web.de",
+      "password": "$2b$10$oruxJ/uljFHdA9AY.ju/luGEZiEBQznVXScbfgtcjuyJaTh8X3c02",
+      "loginMethod": "local"
+    },
+    {
+      "id": 9,
+      "name": "user16",
+      "email": "user16@web.de",
+      "password": "$2b$10$fALe4vK97KkC8r3cNuemu.XU6ydtnTEFGYDXCMduw1Zg1dtQV7CnK",
+      "loginMethod": "local"
+    },
+    {
+      "id": 10,
+      "name": "user18",
+      "email": "user18@web.de",
+      "password": "$2b$10$jv6lTIZi0bfSImYZaLfdHepsgVA2vmnR0Fgzhop/Ujx3mk1zg3Vcy",
+      "loginMethod": "local"
+    },
+    {
+      "id": 11,
+      "name": "user20",
+      "email": "user20@web.de",
+      "password": "$2b$10$K/KHd5zT8NqcmHnsq2FV4OdDwmH1q4oqPxqSEEInty2Px05JcTsJq",
+      "loginMethod": "local"
+    },
+    {
+      "id": 12,
+      "name": "user22",
+      "email": "user22@web.de",
+      "password": "$2b$10$F9iGMo7krF6WeXRrChuQdeBMC0TZoe84MZeWuQkF9wqLTBuojofkq",
+      "loginMethod": "local"
+    }
   ],
   "githubUser": [
-    
+    {
+      "id": 1,
+      "name": "Schlacki",
+      "email": "michael.schlack@gmail.com",
+      "password": "$2b$10$6xm1tJH528LixQoJfmX5veSwIOr4GZV0PrRTW08eAuxNTOkgY5lz2",
+      "loginMethod": "github"
+    }
   ]
 }

@@ -3,7 +3,24 @@ const path = require('path');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-exports.signupUserModel = async (name, email, password, loginMethod) => {
+getUserJson=()=> {
+	return new Promise((resolve, reject) => {
+		fs.readFile(
+			path.join(__dirname, '../mockDB.json'),
+			'utf8',
+			(err, data) => {
+				if (err) {
+					reject(err);
+				} else {
+					resolve(data);
+				}
+			}
+		);
+	});
+}
+
+
+signupUserModel = async (name, email, password, loginMethod) => {
 	console.log(
 		'[userModel.js] signupUserModel: ',
 		name,
@@ -13,19 +30,7 @@ exports.signupUserModel = async (name, email, password, loginMethod) => {
 	);
 	try {
 		// Lese die Daten aus der mockDB.json Datei
-		const data = await new Promise((resolve, reject) => {
-			fs.readFile(
-				path.join(__dirname, '../mockDB.json'),
-				'utf8',
-				(err, data) => {
-					if (err) {
-						reject(err);
-					} else {
-						resolve(data);
-					}
-				}
-			);
-		});
+		const data = await getUserJson();
 
 		// Parse die Benutzer aus den gelesenen Daten
 		const userArrays = JSON.parse(data);
@@ -100,22 +105,10 @@ exports.signupUserModel = async (name, email, password, loginMethod) => {
 	}
 };
 
-exports.loginUserModel = async (email, password) => {
+loginUserModel = async (email, password) => {
 	try {
 		// Lese die Daten aus der mockDB.json Datei
-		const data = await new Promise((resolve, reject) => {
-			fs.readFile(
-				path.join(__dirname, '../mockDB.json'),
-				'utf8',
-				(err, data) => {
-					if (err) {
-						reject(err);
-					} else {
-						resolve(data);
-					}
-				}
-			);
-		});
+		const data = getUserJson();
 
 		// Parse die Benutzer aus den gelesenen Daten
 		const users = JSON.parse(data).user;
@@ -147,3 +140,6 @@ exports.loginUserModel = async (email, password) => {
 		console.error('Fehler beim Lesen der Datei:', error);
 	}
 };
+
+
+module.exports = {getUserJson, loginUserModel, signupUserModel}
