@@ -14,13 +14,12 @@ on:
       - feature/*
 
 jobs:
-  build:
-
+  lint:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [ 16.x, 18.x,20.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -38,8 +37,27 @@ jobs:
     - name: Run FrontEndLint
       run: npm run lint --prefix recipe-frontend/
 
+  jest:
+    runs-on: ubuntu-latest
 
-#    - run: npm ci
-#    - run: npm run build --if-present
-#    - run: npm test
+    strategy:
+      matrix:
+        node-version: [ 16.x, 18.x, 20.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Install Dependencies
+      run: npm install --prefix recipe-backend/
+
+    - name: Run BackendJest
+      run: npm run test --prefix recipe-backend/
+
 

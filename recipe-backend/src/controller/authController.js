@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 exports.signupUser = async (req, res) => {
 	console.log('[authController.js] signupUser: ', req.body);
 	try {
-		const { name, email, password = 'placeholder', loginMethod } = req.body;
+		const { name, email, password = 'placeholder', loginMethod = 'local'} = req.body;
 
 		// Überprüfe, ob alle Felder ausgefüllt sind
 		if (!name || !email || !password) {

@@ -1,21 +1,572 @@
 {
   "user": [
     {
-      "name": "User 1",
-      "email": "User1@email",
-      "password": "123456"
+      "id": 1,
+      "name": "user1",
+      "email": "user1@web.de",
+      "password": "$2b$10$yuCgxRKnZgXdtq0TKhPOzOxRUk/xumVVT.a.tuaDf8K00t1uR06hu",
+      "loginMethod": "local"
     },
     {
       "id": 2,
-      "name": "User 2",
-      "email": "User2@web.de",
-      "password": "$2b$10$jd0F32CNF8HoLkgIbINyreDucSA/lscOtKSDaKyWibd4S9752R66W"
+      "name": "Hans",
+      "email": "Hans@web.de",
+      "password": "$2b$10$.aMhltlmpYdL8BcOKAh9O.sN8DT9ELf31K98896fFKqVuCYV1q0HO",
+      "loginMethod": "local"
     },
     {
       "id": 3,
-      "name": "Daniel Bauer",
-      "email": "dan717@gmx.de",
-      "password": "$2b$10$T9DApnYyQ6AuIdKlKYQJy.Kz2YuyaGvVXvNWAUzaIdhoKqhNctMv.",
+      "name": "user4",
+      "email": "user4@web.de",
+      "password": "$2b$10$glRqU7AmE2TtO8nyqFnM4OaRifj6cLz/n4.ul6EdZA3XAZlsVxiTi",
+      "loginMethod": "local"
+    },
+    {
+      "id": 4,
+      "name": "user6",
+      "email": "user6@web.de",
+      "password": "$2b$10$wuMXz9emHDSXkIN.hbVnROim24Ohp3Anp1IZPDZuCBxN4eBwszYlG",
+      "loginMethod": "local"
+    },
+    {
+      "id": 5,
+      "name": "user8",
+      "email": "user8@web.de",
+      "password": "$2b$10$6et7XCGUvYJ7bdO6gS5lGuuIgsRsbRJNNCi8.RtsjaCJjbe.XOBUe",
+      "loginMethod": "local"
+    },
+    {
+      "id": 6,
+      "name": "user10",
+      "email": "user10@web.de",
+      "password": "$2b$10$DaqV.CYmVvEmNDmL45bzL.wi7qN72Aq0ljltSkkW/dwR6HjbHu8ia",
+      "loginMethod": "local"
+    },
+    {
+      "id": 7,
+      "name": "user12",
+      "email": "user12@web.de",
+      "password": "$2b$10$nYxYLwq9OSZ5aCa5Gj7KDusl5UwBKH/Ngz.br/q/lW0rgxuR6zKpK",
+      "loginMethod": "local"
+    },
+    {
+      "id": 8,
+      "name": "user14",
+      "email": "user14@web.de",
+      "password": "$2b$10$oruxJ/uljFHdA9AY.ju/luGEZiEBQznVXScbfgtcjuyJaTh8X3c02",
+      "loginMethod": "local"
+    },
+    {
+      "id": 9,
+      "name": "user16",
+      "email": "user16@web.de",
+      "password": "$2b$10$fALe4vK97KkC8r3cNuemu.XU6ydtnTEFGYDXCMduw1Zg1dtQV7CnK",
+      "loginMethod": "local"
+    },
+    {
+      "id": 10,
+      "name": "user18",
+      "email": "user18@web.de",
+      "password": "$2b$10$jv6lTIZi0bfSImYZaLfdHepsgVA2vmnR0Fgzhop/Ujx3mk1zg3Vcy",
+      "loginMethod": "local"
+    },
+    {
+      "id": 11,
+      "name": "user20",
+      "email": "user20@web.de",
+      "password": "$2b$10$K/KHd5zT8NqcmHnsq2FV4OdDwmH1q4oqPxqSEEInty2Px05JcTsJq",
+      "loginMethod": "local"
+    },
+    {
+      "id": 12,
+      "name": "user22",
+      "email": "user22@web.de",
+      "password": "$2b$10$F9iGMo7krF6WeXRrChuQdeBMC0TZoe84MZeWuQkF9wqLTBuojofkq",
+      "loginMethod": "local"
+    },
+    {
+      "id": 13,
+      "name": "user24",
+      "email": "user24@web.de",
+      "password": "$2b$10$mseZp8EZ9.5y2hbLVagAaezDVtPgchQSe8ySEkAdGOMJunDo79u/C",
+      "loginMethod": "local"
+    },
+    {
+      "id": 14,
+      "name": "user26",
+      "email": "user26@web.de",
+      "password": "$2b$10$KjD1nbEW77cCv4x4pvzHZeFhxvVhwQ2WZB9n8NV.KOLu7A9cKjdE6",
+      "loginMethod": "local"
+    },
+    {
+      "id": 15,
+      "name": "user28",
+      "email": "user28@web.de",
+      "password": "$2b$10$Ks8lzbWJtHIPktqJfoQ8DOF2xVaEjKnpVGD3tbrPLSWlU2cgfuosm",
+      "loginMethod": "local"
+    },
+    {
+      "id": 16,
+      "name": "user30",
+      "email": "user30@web.de",
+      "password": "$2b$10$dzMXuyGff8bH39WveCPfL.TOdIul9rfqOPmrAtnUUpy8nzSu5IpSq",
+      "loginMethod": "local"
+    },
+    {
+      "id": 17,
+      "name": "user32",
+      "email": "user32@web.de",
+      "password": "$2b$10$bhF5lm4eAPztQ8CHoAyrOuwAbBaXTnuWl/xQBkSeJPJe0aber5EH6",
+      "loginMethod": "local"
+    },
+    {
+      "id": 18,
+      "name": "user34",
+      "email": "user34@web.de",
+      "password": "$2b$10$TtVClHTblEi.XquuGO7gX.nwy7EDobeTGA7a5R1kstPgqeGXP1vy.",
+      "loginMethod": "local"
+    },
+    {
+      "id": 19,
+      "name": "user54",
+      "email": "user54@web.de",
+      "password": "$2b$10$ucmI2m348POg6QDCeGO4oeyn5O.ZE7vW/PfQlRMvoBr2s2xCj91qK",
+      "loginMethod": "local"
+    },
+    {
+      "id": 20,
+      "name": "user38",
+      "email": "user38@web.de",
+      "password": "$2b$10$uzMFstcejj6/6XlkJwzvd.x1tXf2F3sn4xPTwae6mRE0BwZ7OL8XG",
+      "loginMethod": "local"
+    },
+    {
+      "id": 21,
+      "name": "user60",
+      "email": "user60@web.de",
+      "password": "$2b$10$Qg8q9pM4cBUKH5QLqqo8veTONnLNm8FMcJusYRjXKSZYGtckP2F12",
+      "loginMethod": "local"
+    },
+    {
+      "id": 22,
+      "name": "user42",
+      "email": "user42@web.de",
+      "password": "$2b$10$2Ap00uhh9EFcqA2tWvUK9e2cre5ubuweJLXT/sizormkRE2Y7uhXO",
+      "loginMethod": "local"
+    },
+    {
+      "id": 23,
+      "name": "user44",
+      "email": "user44@web.de",
+      "password": "$2b$10$3YLp.adMdkLdOVJp/TxKlOZpBFVDl3LO06HitP4FAgKq4zEMruO0S",
+      "loginMethod": "local"
+    },
+    {
+      "id": 24,
+      "name": "user46",
+      "email": "user46@web.de",
+      "password": "$2b$10$lxWIHQ8Xvhe/tC.6XOSEuuGyZwpgumNx3pTrD4MYwhK4/2BOOyy.G",
+      "loginMethod": "local"
+    },
+    {
+      "id": 25,
+      "name": "user48",
+      "email": "user48@web.de",
+      "password": "$2b$10$xFV571qqmmTLY8ZF8bZE1.3HZuDITB20E5hx0AMowRxhGiHph59Zm",
+      "loginMethod": "local"
+    },
+    {
+      "id": 26,
+      "name": "user50",
+      "email": "user50@web.de",
+      "password": "$2b$10$qGCiUXLpHoZQkrXKJAaONujsp5kstfAInfdew5m3tZ3J2xlVMt0Oa",
+      "loginMethod": "local"
+    },
+    {
+      "id": 27,
+      "name": "user52",
+      "email": "user52@web.de",
+      "password": "$2b$10$p7AaexOjPT3ADQWkOwVUguMofiupJImFqxUnunSa6FWWTMZCa.j/q",
+      "loginMethod": "local"
+    },
+    {
+      "id": 28,
+      "name": "User9",
+      "email": "user9@web.de",
+      "password": "$2b$10$ZSPRa8PBZFehkGXe7Z1DLu//86b0Ue/8uDDdUX.DH05/HMsYUm6PC",
+      "loginMethod": "local"
+    },
+    {
+      "id": 29,
+      "name": "user56",
+      "email": "user56@web.de",
+      "password": "$2b$10$efaDlexrNFWoI2Gq3ypiY.KdiqdJOh7WI/tLpgOWZprllBRfm/gyy",
+      "loginMethod": "local"
+    },
+    {
+      "id": 30,
+      "name": "user58",
+      "email": "user58@web.de",
+      "password": "$2b$10$sQQl9czFHRLYItB2glxTlOeRWa7UFCiqTAzWgWT1HJjJlEDzbMYue",
+      "loginMethod": "local"
+    },
+    {
+      "id": 31,
+      "name": "user13.626378039791216",
+      "email": "user13.626378039791216@web.de",
+      "password": "$2b$10$fUutf9OtPubvva50CLmg9.OoyWGugY308uDAUOBc7svhJTh3WVb.u",
+      "loginMethod": "local"
+    },
+    {
+      "id": 32,
+      "name": "user14.27126821784583",
+      "email": "user14.27126821784583@web.de",
+      "password": "$2b$10$bTODnrFNxJFaYeBH/NF4peKERvcNLfhFhYNrkNOcCZ9rE9//afUjm",
+      "loginMethod": "local"
+    },
+    {
+      "id": 33,
+      "name": "user3.6924604897790587",
+      "email": "user3.6924604897790587@web.de",
+      "password": "$2b$10$Bxj907p5YKtFTigPXTD.FOfjaHFh1XyeVQarRWWcZABzvLY.I0v1a",
+      "loginMethod": "local"
+    },
+    {
+      "id": 34,
+      "name": "user24.8215040246723",
+      "email": "user24.8215040246723@web.de",
+      "password": "$2b$10$fNBJdJ9nFD9X.nVh4S4xy./pLh9VNIrfUVFrDJ56KrZ.H92ScET4u",
+      "loginMethod": "local"
+    },
+    {
+      "id": 35,
+      "name": "user32.64607689379652",
+      "email": "user32.64607689379652@web.de",
+      "password": "$2b$10$.0rKqJfSE2Wz1hmY3LV2M.Uq1EfZjFWokmOQp69su1TDE07HtfKIu",
+      "loginMethod": "local"
+    },
+    {
+      "id": 36,
+      "name": "user24.60492880298041",
+      "email": "user24.60492880298041@web.de",
+      "password": "$2b$10$cXDUFJ./ezNAK2rw1hFcvuOoRUJO5THeylh33lG4LoLAsm08STGUy",
+      "loginMethod": "local"
+    },
+    {
+      "id": 37,
+      "name": "user32.20166058437646",
+      "email": "user32.20166058437646@web.de",
+      "password": "$2b$10$cs9rLnMtfAGFFOujlYQHMe.IYnc1KeX/xlxt5X3PL2t0Rp995FYL2",
+      "loginMethod": "local"
+    },
+    {
+      "id": 38,
+      "name": "user33.03864315440318",
+      "email": "user33.03864315440318@web.de",
+      "password": "$2b$10$WerDUl11AaowypCg/S2bau3vUZIORyFm5n.86liIt/pHdRpNVu.Kq",
+      "loginMethod": "local"
+    },
+    {
+      "id": 39,
+      "name": "user35.68303432964131",
+      "email": "user35.68303432964131@web.de",
+      "password": "$2b$10$VqhsXqAMn54mnpgljXEpMedMeLkvhUK5IJ/PT4fhgVGfDGQ1g9uEi",
+      "loginMethod": "local"
+    },
+    {
+      "id": 40,
+      "name": "user27.73028717013239",
+      "email": "user27.73028717013239@web.de",
+      "password": "$2b$10$TgIw/fJhcquhiGTNUulWdO3jPHDuOSMTW8z/02If8V.vcuMCwMNMm",
+      "loginMethod": "local"
+    },
+    {
+      "id": 41,
+      "name": "user31.592974241268934",
+      "email": "user31.592974241268934@web.de",
+      "password": "$2b$10$fVEfeCmrvehkNUTTy.Pqfupu4sH5ybWOOtXW3qWnijxHig4M4rpMC",
+      "loginMethod": "local"
+    },
+    {
+      "id": 42,
+      "name": "user1.0572277014692641",
+      "email": "user1.0572277014692641@web.de",
+      "password": "$2b$10$ZBXXk22ao4v8hbpx2X20CubcLEIxuFfYH9QocMlY/5nxaWXsvdUzu",
+      "loginMethod": "local"
+    },
+    {
+      "id": 43,
+      "name": "user24.656229819490363",
+      "email": "user24.656229819490363@web.de",
+      "password": "$2b$10$GqzVYUr2.AJx7M/RxHIKW.M7DCRea0MEqzQwE.orNKEVya.RAeHp6",
+      "loginMethod": "local"
+    },
+    {
+      "id": 44,
+      "name": "user28.09260890060897",
+      "email": "user28.09260890060897@web.de",
+      "password": "$2b$10$vOF50HMC7sLfTs8RyW.EoOqLet1H6QL.8wYmG1c13MzgRxcDz3Cr6",
+      "loginMethod": "local"
+    },
+    {
+      "id": 45,
+      "name": "user24.517036746851204",
+      "email": "user24.517036746851204@web.de",
+      "password": "$2b$10$NBCdVr9KqhL6CxEKe8GZm.VIpIxTKx6KTLU5RrvuLyj8f1BM.3aRO",
+      "loginMethod": "local"
+    },
+    {
+      "id": 46,
+      "name": "user29.932559575322745",
+      "email": "user29.932559575322745@web.de",
+      "password": "$2b$10$MjUQSMB5sLqOlAQjy9W1i.2t/3FjYAOMCy57CkuD8Bv8OgxmTnfJi",
+      "loginMethod": "local"
+    },
+    {
+      "id": 47,
+      "name": "user27.160757028440255",
+      "email": "user27.160757028440255@web.de",
+      "password": "$2b$10$irIyoFoMDAGaXNDhQvlYi.AaSkHp3TZ80xV6FQYNHtkYEVd1g8fvq",
+      "loginMethod": "local"
+    },
+    {
+      "id": 48,
+      "name": "user27.783531879318474",
+      "email": "user27.783531879318474@web.de",
+      "password": "$2b$10$je1m851F7iYM2eK8xZvwDehwD6LXEF8Yv.QJii.5D8JT3P0p4z/q6",
+      "loginMethod": "local"
+    },
+    {
+      "id": 49,
+      "name": "user40.77065404516873",
+      "email": "user40.77065404516873@web.de",
+      "password": "$2b$10$47Fu/IaMaghjKFwTTlM6pOZZfiwd.m3.flr7YPOrCSiE.Or0MHViW",
+      "loginMethod": "local"
+    },
+    {
+      "id": 50,
+      "name": "user4.771769259360495",
+      "email": "user4.771769259360495@web.de",
+      "password": "$2b$10$rwqotNl9a2hwwhbT0.PW/OACKM.pTKIAiADiF2zygsIpGTsyhNFji",
+      "loginMethod": "local"
+    },
+    {
+      "id": 51,
+      "name": "user17.842243910809717",
+      "email": "user17.842243910809717@web.de",
+      "password": "$2b$10$19bh7Vea5FvssWxWhSUEDu50uZ5pwFRB/24oEtycl8pnk.k5vur2O",
+      "loginMethod": "local"
+    },
+    {
+      "id": 52,
+      "name": "user41.686834126143644",
+      "email": "user41.686834126143644@web.de",
+      "password": "$2b$10$a0W.sFxlXK8Qd/n6zZmWpOiwu69cVTzijayxNySjho2QaBnmtl21q",
+      "loginMethod": "local"
+    },
+    {
+      "id": 53,
+      "name": "user50.832066904600175",
+      "email": "user50.832066904600175@web.de",
+      "password": "$2b$10$4cbMrHEfjv4HlOpzt7XD2.24lOcRD1gzguKYXCsrcjOLHHYWvBbfO",
+      "loginMethod": "local"
+    },
+    {
+      "id": 54,
+      "name": "user27.156209916072324",
+      "email": "user27.156209916072324@web.de",
+      "password": "$2b$10$Yf8ndct/Hly7AKoUcJRXSOuR8T6v9lrkM6EybcbCrtphE7TDfi4U2",
+      "loginMethod": "local"
+    },
+    {
+      "id": 55,
+      "name": "user21.558482854107176",
+      "email": "user21.558482854107176@web.de",
+      "password": "$2b$10$YkmAy8nNhLvQp1dQEeZbkOBdvfOkZGcjrKQPjT8.3ef8WL3Pc/ADS",
+      "loginMethod": "local"
+    },
+    {
+      "id": 56,
+      "name": "user51.87139993423371",
+      "email": "user51.87139993423371@web.de",
+      "password": "$2b$10$QvjY5ZUTygz0ITQN1IOq5.tHacmSKqSghtqsdA2SDuLOlyqKL.kTW",
+      "loginMethod": "local"
+    },
+    {
+      "id": 57,
+      "name": "user15.84825658407971",
+      "email": "user15.84825658407971@web.de",
+      "password": "$2b$10$nUmeNlcA6x0Ha/HLJMWxiOmkMzQvXZZArgBPB5OyA1OLcwtBLgG1O",
+      "loginMethod": "local"
+    },
+    {
+      "id": 58,
+      "name": "user56.436806781747954",
+      "email": "user56.436806781747954@web.de",
+      "password": "$2b$10$SxpOq39mCq6QZjcj.DES1O8y4gDc5DwQBYqWJzCxc3Ng8rl1WuU2e",
+      "loginMethod": "local"
+    },
+    {
+      "id": 59,
+      "name": "user34.84846768878019",
+      "email": "user34.84846768878019@web.de",
+      "password": "$2b$10$14RE6dGGM7gFdXFUC19NDOjWVAaZPMjXQtAaEoIs7AmaD/alPi3fG",
+      "loginMethod": "local"
+    },
+    {
+      "id": 60,
+      "name": "user46.497480981338285",
+      "email": "user46.497480981338285@web.de",
+      "password": "$2b$10$OPAS1X05IYfp/sMkys6zWeTO/ndS1pMsCvBcbWQVg5p8n.sjmeQYq",
+      "loginMethod": "local"
+    },
+    {
+      "id": 61,
+      "name": "user17.21027734719518",
+      "email": "user17.21027734719518@web.de",
+      "password": "$2b$10$CC9mTOJxPwy3yjcYRhq1/uVUzwmTYLZX4/s.YqhxVfGF8zaOWviOG",
+      "loginMethod": "local"
+    },
+    {
+      "id": 62,
+      "name": "user48.31431438641797",
+      "email": "user48.31431438641797@web.de",
+      "password": "$2b$10$jdYULCBJkKKVDrAQpcPxRuJ09LKVimrV71ZEkAVN8nLJJ6lbmnI9y",
+      "loginMethod": "local"
+    },
+    {
+      "id": 63,
+      "name": "user42.81825755601417",
+      "email": "user42.81825755601417@web.de",
+      "password": "$2b$10$fvzO0sffsiUcEk5ILnpH9e1HeGcCKxDDOhNooU9gMMwHhlbqWPX46",
+      "loginMethod": "local"
+    },
+    {
+      "id": 64,
+      "name": "user51.62865685706447",
+      "email": "user51.62865685706447@web.de",
+      "password": "$2b$10$c7d5NHWbXUUQFgecEpWo5uczEbo7ej61rX65opIoJAKW4PVNikoXy",
+      "loginMethod": "local"
+    },
+    {
+      "id": 65,
+      "name": "user33.10873929743899",
+      "email": "user33.10873929743899@web.de",
+      "password": "$2b$10$2Z52.emaSH11m3Q.3VlSx.czecv279xTw8.At3jepxDkLOHpSaVCm",
+      "loginMethod": "local"
+    },
+    {
+      "id": 66,
+      "name": "user42.544551189693905",
+      "email": "user42.544551189693905@web.de",
+      "password": "$2b$10$FkK2RfKWA7KXocjV9Itl3ezywb0Qqr6D6t3roPrET40crm/I86MS6",
+      "loginMethod": "local"
+    },
+    {
+      "id": 67,
+      "name": "user38.27949532470501",
+      "email": "user38.27949532470501@web.de",
+      "password": "$2b$10$bGtQrz6ROCkCxk.22Gyt8.O7R25WNO6UEAi6dJ1gmIS78JN8kceEG",
+      "loginMethod": "local"
+    },
+    {
+      "id": 68,
+      "name": "user18.486847965902186",
+      "email": "user18.486847965902186@web.de",
+      "password": "$2b$10$uMFTuFkFtxePfNWhQXLAjO05EPy29VCHANdQRnCw5KLGFXLpxJOxy",
+      "loginMethod": "local"
+    },
+    {
+      "id": 69,
+      "name": "user47.93316122730757",
+      "email": "user47.93316122730757@web.de",
+      "password": "$2b$10$n1SSDIFDtVQhmkZ.i52uUObMutlcwm9rHxMobaIwA48INzpwGq6Im",
+      "loginMethod": "local"
+    },
+    {
+      "id": 70,
+      "name": "user52.653259442707785",
+      "email": "user52.653259442707785@web.de",
+      "password": "$2b$10$ORWvUhdyBLBKudmINlT39OsvG47YZz2o6B5R9gpF20.Cqz/rZAd6u",
+      "loginMethod": "local"
+    },
+    {
+      "id": 71,
+      "name": "user66.29308057804154",
+      "email": "user66.29308057804154@web.de",
+      "password": "$2b$10$VV0kRQYkpRgKrISgvMRfGuby8ItfI3hZ9bAHlxpeA0Veo9.92p8jq",
+      "loginMethod": "local"
+    },
+    {
+      "id": 72,
+      "name": "user44.3809746700892",
+      "email": "user44.3809746700892@web.de",
+      "password": "$2b$10$glLWDu4cgDiIU/k5Q2qWuuMeLdMtWGU2xZh8LC9jLSBuntYk9Vkty",
+      "loginMethod": "local"
+    },
+    {
+      "id": 73,
+      "name": "user6.067307018799282",
+      "email": "user6.067307018799282@web.de",
+      "password": "$2b$10$jXZ7bEaV0OKVwGwZv3Us5eQqGqCjTaS/mrjIN/4PmWFVG3.Hpy6Q.",
+      "loginMethod": "local"
+    },
+    {
+      "id": 74,
+      "name": "user10.816935372808027",
+      "email": "user10.816935372808027@web.de",
+      "password": "$2b$10$WTpD0dGi0YPYTar8qseTaub0vSAboxzfsUX28q8IfNm31sPJ4DjpK",
+      "loginMethod": "local"
+    },
+    {
+      "id": 75,
+      "name": "user23.022034947861403",
+      "email": "user23.022034947861403@web.de",
+      "password": "$2b$10$ds/CeOPoU3oEvKdzjGQc/OcUodHOCvPClv/s6RobhY0NjIJdYKR1m",
+      "loginMethod": "local"
+    },
+    {
+      "id": 76,
+      "name": "user4.034874053926485",
+      "email": "user4.034874053926485@web.de",
+      "password": "$2b$10$TJSE0fseeB5wrr8ozMOsY.PyaT5.9yQzFZkB./TXtdQAcZQFKImA2",
+      "loginMethod": "local"
+    },
+    {
+      "id": 77,
+      "name": "user55.90952553255645",
+      "email": "user55.90952553255645@web.de",
+      "password": "$2b$10$2BxmxATw.PvMRcnYY17tTeI0iBvwrYd4ai3IqnkoOmlXf96js3hGm",
+      "loginMethod": "local"
+    },
+    {
+      "id": 78,
+      "name": "user22.118994272710893",
+      "email": "user22.118994272710893@web.de",
+      "password": "$2b$10$d0OXl3QZDAwUyaReNS6ih.LKxj4TJeWV2/r21CxkeWEAAGdSEDcfK",
+      "loginMethod": "local"
+    },
+    {
+      "id": 79,
+      "name": "user56.300218947097626",
+      "email": "user56.300218947097626@web.de",
+      "password": "$2b$10$HKaMnNOOPzQHXEU.C5zE/.1u8ApIknUvcDh0deKR7G7IJUaDgaKSq",
+      "loginMethod": "local"
+    },
+    {
+      "id": 80,
+      "name": "user52.689365444938424",
+      "email": "user52.689365444938424@web.de",
+      "password": "$2b$10$7PLZwUKJ5268fzd3lw7RD.zpyXFSL12iyO6FsXEbrwOx0WLo72EOy",
+      "loginMethod": "local"
+    }
+  ],
+  "githubUser": [
+    {
+      "id": 1,
+      "name": "Schlacki",
+      "email": "michael.schlack@gmail.com",
+      "password": "$2b$10$6xm1tJH528LixQoJfmX5veSwIOr4GZV0PrRTW08eAuxNTOkgY5lz2",
       "loginMethod": "github"
     }
   ]

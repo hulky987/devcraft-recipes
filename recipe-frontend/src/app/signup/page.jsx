@@ -18,6 +18,7 @@ function SignupForm() {
 			email,
 			password,
 			confirmPassword,
+			loginMethod: 'local',
 		});
 		console.log('[SignupForm] response.data:', response.data);
 

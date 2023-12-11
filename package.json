@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "install": "cd ./recipe-frontend && npm install && cd ../recipe-backend && npm install",
+    "start-frontend": "cd ./recipe-frontend && npm run dev",
+    "start-backend": "cd ./recipe-backend && npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "next": "^14.0.4"
   }
 }

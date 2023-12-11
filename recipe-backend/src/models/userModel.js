@@ -3,7 +3,24 @@ const path = require('path');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-exports.signupUserModel = async (name, email, password, loginMethod) => {
+getUserJson=()=> {
+	return new Promise((resolve, reject) => {
+		fs.readFile(
+			path.join(__dirname, '../mockDB.json'),
+			'utf8',
+			(err, data) => {
+				if (err) {
+					reject(err);
+				} else {
+					resolve(data);
+				}
+			}
+		);
+	});
+}
+
+
+signupUserModel = async (name, email, password, loginMethod) => {
 	console.log(
 		'[userModel.js] signupUserModel: ',
 		name,
@@ -13,27 +30,18 @@ exports.signupUserModel = async (name, email, password, loginMethod) => {
 	);
 	try {
 		// Lese die Daten aus der mockDB.json Datei
-		const data = await new Promise((resolve, reject) => {
-			fs.readFile(
-				path.join(__dirname, '../mockDB.json'),
-				'utf8',
-				(err, data) => {
-					if (err) {
-						reject(err);
-					} else {
-						resolve(data);
-					}
-				}
-			);
-		});
+		const data = await getUserJson();
 
 		// Parse die Benutzer aus den gelesenen Daten
-		const users = JSON.parse(data).user;
+		const userArrays = await JSON.parse(data);
 
 		let emailExists = false;
 
+		// Merge localUser und githubUser arrays
+		const allUsers = [...userArrays.user, ...userArrays.githubUser];
+
 		// Durchlaufe alle Benutzer
-		for (const user of users) {
+		for (const user of allUsers) {
 			// Wenn die E-Mail des Benutzers mit der eingegebenen E-Mail übereinstimmt
 			if (user.email === email) {
 				emailExists = true;
@@ -43,18 +51,22 @@ exports.signupUserModel = async (name, email, password, loginMethod) => {
 
 		// Wenn die E-Mail bereits existiert, gib null zurück
 		if (emailExists) {
+			console.log('User existiert bereits!');
 			return null;
 		} else {
 			console.log('User wird angelegt!');
 
-			let id = users.length + 1;
+			let localUserid = userArrays.user.length + 1;
+			let githubUserid = userArrays.githubUser.length + 1;
 
 			// Hashe das Passwort, bevor es in der Datenbank gespeichert wird
 			const hashedPassword = await bcrypt.hash(password, saltRounds);
 
+			const isGithubUser = loginMethod === 'github';
+
 			// Erstelle ein neues Benutzerobjekt
 			let newUser = {
-				id: id,
+				id: isGithubUser ? githubUserid : localUserid,
 				name: name,
 				email: email,
 				password: hashedPassword,
@@ -62,20 +74,29 @@ exports.signupUserModel = async (name, email, password, loginMethod) => {
 			};
 
 			// Füge den neuen Benutzer zur Benutzerliste hinzu
-			users.push(newUser);
+			isGithubUser ? userArrays.githubUser.push(newUser) : userArrays.user.push(newUser);
 
 			// Speichere den neuen Benutzer in der mockDB.json Datei
-			fs.writeFile(
-				path.join(__dirname, '../mockDB.json'),
-				JSON.stringify({ user: users }, null, 2),
-				(err) => {
-					if (err) {
-						reject(err);
-					} else {
-						resolve();
+			new Promise((resolve, reject) => {
+				fs.writeFile(
+					path.join(__dirname, '../mockDB.json'),
+					JSON.stringify(userArrays, null, 2),
+					(err) => {
+						if (err) {
+							reject(err);
+						} else {
+							resolve();
+						}
 					}
-				}
-			);
+				);
+			})
+				.then(() => {
+					console.log('Neuer User wurde erfolgreich angelegt!');
+				})
+				.catch((err) => {
+					console.error('Fehler beim Schreiben der Datei aufgetreten:', err);
+				});
+
 			// Gib das neue Benutzerobjekt zurück
 			return { name, email, password: hashedPassword };
 		}
@@ -84,22 +105,10 @@ exports.signupUserModel = async (name, email, password, loginMethod) => {
 	}
 };
 
-exports.loginUserModel = async (email, password) => {
+loginUserModel = async (email, password) => {
 	try {
 		// Lese die Daten aus der mockDB.json Datei
-		const data = await new Promise((resolve, reject) => {
-			fs.readFile(
-				path.join(__dirname, '../mockDB.json'),
-				'utf8',
-				(err, data) => {
-					if (err) {
-						reject(err);
-					} else {
-						resolve(data);
-					}
-				}
-			);
-		});
+		const data = await getUserJson();
 
 		// Parse die Benutzer aus den gelesenen Daten
 		const users = JSON.parse(data).user;
@@ -131,3 +140,6 @@ exports.loginUserModel = async (email, password) => {
 		console.error('Fehler beim Lesen der Datei:', error);
 	}
 };
+
+
+module.exports = {getUserJson, loginUserModel, signupUserModel}

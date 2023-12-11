@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-// export const api = "http://localhost:9000";
-
 // Schreibe eine Funktion die User Daten aus einer Session empfängt und an einen externen Express Server schickt:
 export const sendUserData = async (session) => {
 	try {

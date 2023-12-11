@@ -1,31 +1,9 @@
 'use client';
 import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
-import { useEffect, useState } from 'react';
-import { sendUserData } from '../utils/api';
 
 export function NavBar() {
 	const { data: session } = useSession();
-	// console.log('[NavBar] session: ', session);
-	const [isClient, setIsClient] = useState(false);
-
-	useEffect(() => {
-		setIsClient(true);
-		if (session) {
-			sendUserData(session);
-			// Ensure this code is only executed on the client
-			if (
-				typeof window !== 'undefined' &&
-				window.location.pathname !== '/'
-			) {
-				window.location.href = '/';
-			}
-		}
-	}, [session]);
-
-	if (!isClient) {
-		return null;
-	}
 
 	if (session) {
 		return (

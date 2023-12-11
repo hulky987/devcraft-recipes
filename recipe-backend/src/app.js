@@ -19,9 +19,16 @@ app.use((error, req, res, next) => {
 
 start(port);
 
+
 function start(port) {
 	return app.listen(port, () => {
 		return console.log(`Express is listening at http://localhost:${port}`);
 	});
 }
-module.exports = { app, start };
+
+function stop(server) {
+	server.close();
+}
+
+
+module.exports = { app, start,stop };
