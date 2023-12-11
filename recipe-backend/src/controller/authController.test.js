@@ -1,20 +1,19 @@
 const fs = require('fs');
 const {
 	beforeAll,
+	afterAll,
 	test,
 	expect,
 	describe,
-	afterAll,
 } = require('@jest/globals');
-const { signupUser } = require('./authController');
 const request = require('supertest');
 const { app, start } = require('../app');
-// import {signupUserModel} from '../models/userModel';
 const path = require('path');
 
 describe('signupUser for local signup', () => {
 	// let server;
-	// const port = 6000;
+	//
+	// const port = 5001;
 	//
 	// beforeAll(() => {
 	// 	server = start(port);
@@ -65,8 +64,7 @@ describe('signupUser for local signup', () => {
 			);
 		});
 
-		// Parse die Benutzer aus den gelesenen Daten
-		const userArrays = JSON.parse(data);
+		const userArrays = await JSON.parse(data);
 
 		let userNameNumber = userArrays.user.length * Math.random();
 
