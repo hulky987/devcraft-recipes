@@ -4,7 +4,12 @@ const jwt = require('jsonwebtoken');
 exports.signupUser = async (req, res) => {
 	console.log('[authController.js] signupUser: ', req.body);
 	try {
-		const { name, email, password = 'placeholder', loginMethod = 'local'} = req.body;
+		const {
+			name,
+			email,
+			password = 'placeholder',
+			loginMethod = 'local',
+		} = req.body;
 
 		// Überprüfe, ob alle Felder ausgefüllt sind
 		if (!name || !email || !password) {
@@ -27,6 +32,15 @@ exports.signupUser = async (req, res) => {
 				message: 'Es existiert bereits ein User mit dieser E-Mail!',
 			});
 		}
+		console.log('[authController.js] back from Model: ', newUser);
+
+		// Wenn ein Github User erstellt wurde
+		// if (data.loginMethod === 'github') {
+		// 	return res.status(201).json({
+		// 		message: 'Github User wurde erfolgreich erstellt!',
+		// 		newUser: { name: newUser.name, email: newUser.email },
+		// 	});
+		// }
 
 		// Erstelle einen neuen JWT
 		const token = jwt.sign(
