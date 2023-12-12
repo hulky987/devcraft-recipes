@@ -1,3 +1,6 @@
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
+
 const fs = require('fs');
 const {
 	beforeAll,
@@ -15,14 +18,21 @@ describe('signupUser for local signup', () => {
 	
 	const port = 5001;
 	
-	beforeAll(() => {
+	beforeAll(async () => {
 		server = start(port);
+
+		await prisma.user.create({
+			data: {
+				name: 'User1',
+				email: 'user1@web.de',
+				password:"123456"}
+			});
 	});
 	
-	afterAll(() => {
+	afterAll(async () => {
+		await prisma.user.deleteMany();
 		server.close()
 	});
-
 
 
 	test("should return 409 if user is already in use ", async () => {
@@ -30,8 +40,8 @@ describe('signupUser for local signup', () => {
 			body: {
 				name: 'User1',
 				email: 'user1@web.de',
-				password:"123456",
-				loginMethod: "local"}
+				password:"123456"
+			}
 		};
 		const response = await request(app).post('/auth/signup').send(req.body);
 		expect(response.status).toBe(409);
@@ -40,32 +50,14 @@ describe('signupUser for local signup', () => {
 
 	test("should return 201 if user is successfully created ", async () => {
 
-		const data = await new Promise((resolve, reject) => {
-			fs.readFile(
-				path.join(__dirname, '../mockDB.json'),
-				'utf8',
-				(err, data) => {
-					if (err) {
-						reject(err);
-					} else {
-						resolve(data);
-					}
-				}
-			);
-		});
-
-		const userArrays = await JSON.parse(data);
-
-		let userNameNumber = userArrays.user.length * Math.random();
-
 		const req = {
 			body: {
-				name: `user${userNameNumber}`,
-				email: `user${userNameNumber}@web.de`,
-				password:"123456",
-				loginMethod: "local"
+				name: 'User2',
+				email: 'user2@example.com',
+				password:"123456"
 			}
-		};
+		}
+
 		const response = await request(app).post('/auth/signup').send(req.body);
 
 		expect(response.status).toBe(201);
@@ -75,7 +67,7 @@ describe('signupUser for local signup', () => {
 		const req = {
 			body: {
 				name: 'User1',
-				loginMethod: "local"
+				email: 'user1@example.com'
 			},
 		};
 
@@ -88,8 +80,7 @@ describe('signupUser for local signup', () => {
 		const req = {
 			body: {
 				name: 'Schlacki',
-				password:"123456",
-				loginMethod: "local"
+				password:"123456"
 			}
 		};
 
@@ -104,8 +95,7 @@ describe('signupUser for local signup', () => {
 			body: {
 				name: 'User1',
 				email: 'user1@web.de',
-				password: "Holadrio",
-				loginMethod: "local"
+				password: "Holadrio"
 			}
 		};
 		const response = await request(app).post('/auth/login').send(req.body);
