@@ -559,6 +559,13 @@
       "email": "user52.689365444938424@web.de",
       "password": "$2b$10$7PLZwUKJ5268fzd3lw7RD.zpyXFSL12iyO6FsXEbrwOx0WLo72EOy",
       "loginMethod": "local"
+    },
+    {
+      "id": 81,
+      "name": "kjs d",
+      "email": "dan717@gmx.de",
+      "password": "$2b$10$b1.W20FOlYGM8cnsDJlLW.qfBtPwOt5GGC9PyWuE2yMtUkbMPcIuG",
+      "loginMethod": "local"
     }
   ],
   "githubUser": [
