@@ -21,7 +21,7 @@ describe('signupUser for local signup', () => {
 	beforeAll(async () => {
 		server = start(port);
 
-		await prisma.user.create({
+		await prisma.userLocal.create({
 			data: {
 				name: 'User1',
 				email: 'user1@web.de',
@@ -30,7 +30,7 @@ describe('signupUser for local signup', () => {
 	});
 	
 	afterAll(async () => {
-		await prisma.user.deleteMany();
+		await prisma.userLocal.deleteMany();
 		server.close()
 	});
 
