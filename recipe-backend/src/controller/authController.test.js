@@ -11,17 +11,17 @@ const { app, start, stop } = require('../app');
 const path = require('path');
 
 describe('signupUser for local signup', () => {
-	// let server;
-	//
-	// const port = 5001;
-	//
-	// beforeAll(() => {
-	// 	server = start(port);
-	// });
-	//
-	// afterAll(() => {
-	// 	server.close()
-	// });
+	let server;
+	
+	const port = 5001;
+	
+	beforeAll(() => {
+		server = start(port);
+	});
+	
+	afterAll(() => {
+		server.close()
+	});
 
 
 
