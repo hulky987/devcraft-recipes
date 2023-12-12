@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="DevCraft Database" uuid="f109a66f-6d51-4956-9971-d3b6370f4afa">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <remarks>Database used for DevCraft-Academy</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>
