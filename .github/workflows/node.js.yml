@@ -38,6 +38,8 @@ jobs:
       run: npm install prisma --save-dev
 
     - name: Run Prisma Migrate
+      env: 
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432/test
       run: npx prisma migrate dev --name init --preview-feature --schema recipe-backend/prisma/schema.prisma
 
     - name: Run FrontEndLint
