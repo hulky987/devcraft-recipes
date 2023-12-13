@@ -146,7 +146,7 @@ signupUserModel = async (name, email, password, loginMethod) => {
 		}
 	}
 
-	const existingUser = await prisma.UserLocal.findFirst({
+	const existingUser = await prisma.userLocal.findFirst({
 		where: {
 			OR: [{ name: name }, { email: email }],
 		},
@@ -158,7 +158,7 @@ signupUserModel = async (name, email, password, loginMethod) => {
 	// Hashe das Passwort, bevor es in der Datenbank gespeichert wird
 	const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-	return prisma.UserLocal.create({
+	return prisma.userLocal.create({
 		data: {
 			name,
 			email,
