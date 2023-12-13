@@ -146,7 +146,7 @@ signupUserModel = async (name, email, password, loginMethod) => {
 		}
 	}
 
-	const existingUser = await prisma.UserLocal.findFirst({
+	const existingUser = await prisma.userLocal.findFirst({
 		where: {
 			OR: [{ name: name }, { email: email }],
 		},
@@ -158,7 +158,7 @@ signupUserModel = async (name, email, password, loginMethod) => {
 	// Hashe das Passwort, bevor es in der Datenbank gespeichert wird
 	const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-	return prisma.UserLocal.create({
+	return prisma.userLocal.create({
 		data: {
 			name,
 			email,
@@ -204,14 +204,23 @@ signupUserModel = async (name, email, password, loginMethod) => {
 // };
 
 loginUserModel = async (email, password) => {
+	// console.log('[loginUserModel] function called');
 	const user = await prisma.UserLocal.findFirst({
 		where: { email: email },
 	});
+	// console.log(
+	// 	'[loginUserModel] user after prisma.UserLocal.findFirst: ',
+	// 	user
+	// );
 	if (!user) {
 		return null;
 	}
 
 	const isPasswordValid = bcrypt.compareSync(password, user.password);
+	// console.log(
+	// 	'[loginUserModel] isPasswordValid after bcrypt.compareSync: ',
+	// 	isPasswordValid
+	// );
 	if (!isPasswordValid) {
 		return null;
 	}
