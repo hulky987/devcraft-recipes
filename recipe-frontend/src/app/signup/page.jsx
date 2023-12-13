@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import Login from '../../components/Login';
+import { setSession } from '../../utils/api';
 
 function SignupForm() {
 	const [name, setName] = useState('');
@@ -22,8 +23,15 @@ function SignupForm() {
 		});
 		console.log('[SignupForm] response.data:', response.data);
 
-		if (response.data.success) {
-			// Weiterleiten zum Dashboard oder einer anderen Seite
+		if (response.data.token) {
+			try {
+				// Setzen der Session Daten
+				setSession(response.data.newUser, response.data.token);
+				// Weiterleiten zu Home
+			} catch (error) {
+				console.error('Error setting session:', error);
+			}
+			// Weiterleiten zu Home
 		} else {
 			// Fehlermeldung anzeigen
 		}

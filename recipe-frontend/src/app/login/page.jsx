@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
+import { setSession } from '../../utils/api';
 
 function LoginForm() {
 	const { data: session } = useSession();
@@ -9,7 +10,7 @@ function LoginForm() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
-	// console.log(name, email, password, confirmPassword);
+	// console.log(email, password);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -18,10 +19,17 @@ function LoginForm() {
 			email: email,
 			password: password,
 		});
-		console.log('[SignupForm] handleSubmit response: ', response);
+		console.log('[LoginForm] handleSubmit response: ', response);
 
-		if (response.data.success) {
-			// Weiterleiten zum Dashboard oder einer anderen Seite
+		if (response.data.token) {
+			try {
+				// Setzen der Session Daten
+				setSession(response.data.user, response.data.token);
+				// Weiterleiten zu Home
+			} catch (error) {
+				console.error('Error setting session:', error);
+			}
+			// Weiterleiten zu Home
 		} else {
 			// Fehlermeldung anzeigen
 		}
