@@ -5,7 +5,8 @@
 	"main": "src/app.js",
 	"scripts": {
 		"start": "cross-env NODE_ENV=dev nodemon app.js",
-		"test": "jest",
+		"test": "cross-env NODE_ENV=test jest",
+		"test:authController": "cross-env NODE_ENV=test jest src/controllers/authController.js --detectOpenHandles",
 		"test:ModelMockedAll": "jest src/models/userModelMockedAll.test.js",
 		"test:ModelMockedController": "export NODE_ENV=testserver && dotenv -e .env.test -- jest --detectOpenHandles src/models/userModelMockedController.test.js",
 		"see-dev-db": "dotenv -e .env.dev -- npx prisma studio",

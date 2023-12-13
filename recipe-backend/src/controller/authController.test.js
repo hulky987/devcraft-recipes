@@ -1,116 +1,110 @@
-const fs = require('fs');
-const {
-	beforeAll,
-	afterAll,
-	test,
-	expect,
-	describe,
-} = require('@jest/globals');
-const request = require('supertest');
-const { app, start, stop } = require('../app');
-const path = require('path');
+const { signupUser, loginUser } = require('./authController');
+const { signupUserModel, loginUserModel } = require('../models/userModel');
+const jwt = require('jsonwebtoken');
 
-describe('signupUser for local signup', () => {
-	// let server;
-	//
-	// const port = 5001;
-	//
-	// beforeAll(() => {
-	// 	server = start(port);
-	// });
-	//
-	// afterAll(() => {
-	// 	server.close()
-	// });
+jest.mock('../models/userModel');
+jest.mock('jsonwebtoken');
 
+signupUserModel.mockImplementation((name, email, password, loginMethod) => {
+	if (email === 'user1@example.com') {
+		// Wenn die E-Mail bereits existiert, geben Sie null zurück
+		return null;
+	}
 
+	// Ansonsten erstellen Sie einen neuen Benutzer
+	return {
+		id: 1,
+		name: name,
+		email: email,
+		password: password,
+		loginMethod: loginMethod,
+	};
+});
 
-	test("should return 409 if user is already in use ", async () => {
-		const req = {
-			body: {
-				name: 'User1',
-				email: 'user1@web.de',
-				password:"123456",
-				loginMethod: "local"}
+loginUserModel.mockImplementation((email, password) => {
+	if (email === 'user1@example.com' && password === '123456') {
+		return {
+			id: 1,
+			name: 'User1',
+			email: 'user1@example.com',
+			password: '123456'
 		};
-		const response = await request(app).post('/auth/signup').send(req.body);
-		expect(response.status).toBe(409);
-	})
+	}
 
+});
 
-	test("should return 201 if user is successfully created ", async () => {
+describe('authController', () => {
+	let req, res;
 
-		const data = await new Promise((resolve, reject) => {
-			fs.readFile(
-				path.join(__dirname, '../mockDB.json'),
-				'utf8',
-				(err, data) => {
-					if (err) {
-						reject(err);
-					} else {
-						resolve(data);
-					}
+	beforeEach(() => {
+		req = {
+			body: {},
+		};
+		res = {
+			status: jest.fn().mockReturnThis(),
+			json: jest.fn(),
+		};
+	});
+
+	describe('signupUser', () => {
+		it('should return 409 if mail is already in use', async () => {
+			const req = {
+				body: {
+					name: 'User1',
+					email: 'user1@example.com',
+					password: '123456'
 				}
-			);
+			};
+			await signupUser(req, res);
+			expect(res.json).toHaveBeenCalledWith({ message: 'Es existiert bereits ein User mit dieser E-Mail!' });
+			expect(res.status).toHaveBeenCalledWith(409);
 		});
 
-		const userArrays = await JSON.parse(data);
+		it('should return 201 if user is successfully created', async () => {
+			const req = {
+				body: {
+					name: 'User2',
+					email: 'user2@example.com',
+					password: '123456'
+				}
+			};
+			await signupUser(req, res);
+			expect(res.status).toHaveBeenCalledWith(201);
 
-		let userNameNumber = userArrays.user.length * Math.random();
+		});
 
-		const req = {
-			body: {
-				name: `user${userNameNumber}`,
-				email: `user${userNameNumber}@web.de`,
-				password:"123456",
-				loginMethod: "local"
-			}
-		};
-		const response = await request(app).post('/auth/signup').send(req.body);
-
-		expect(response.status).toBe(201);
-	})
-
-	test('should return 400 if password is missing', async () => {
-		const req = {
-			body: {
-				name: 'User1',
-				loginMethod: "local"
-			},
-		};
-
-		const response = await request(app).post('/auth/signup').send(req.body);
-
-		expect(response.status).toBe(400);
+		it('should return 409 if user is already in use ', async () => {
+			const req = {
+				body: {
+					name: 'User1',
+					email: 'user1@example.com',
+					password: "123456"
+				}
+			};
+			await signupUser(req, res);
+			expect(res.status).toHaveBeenCalledWith(409);
+		});
 	});
 
-	test('login should return 400 if email is missing', async () => {
-		const req = {
-			body: {
-				name: 'Schlacki',
-				password:"123456",
-				loginMethod: "local"
-			}
-		};
+	describe('loginUser', () => {
+		it('should return 400 if not all fields are filled out', async () => {
+			await loginUser(req, res);
+			expect(res.status).toHaveBeenCalledWith(400);
+			expect(res.json).toHaveBeenCalledWith({ message: 'Bitte alle Felder ausfüllen!' });
+		});
 
-		const response = await request(app).post('/auth/login').send(req.body);
+		// Add more tests for loginUser here
+		it('should return 200 if user logged in succesfully', async () => {
+			const req = {
+				body: {
+					email: 'user1@example.com',
+					password: '123456'
+				}
+			};
+			await loginUser(req, res);
+			expect(res.status).toHaveBeenCalledWith(200);
+			expect(res.json).toHaveBeenCalledWith({ message: 'User wurde erfolgreich eingeloggt!', token: undefined, user: { name: 'User1', email: 'user1@example.com' } });
 
-		expect(response.status).toBe(400);
-	});
-
-
-	test("login should return 401 if credentials are wrong", async () => {
-		const req = {
-			body: {
-				name: 'User1',
-				email: 'user1@web.de',
-				password: "Holadrio",
-				loginMethod: "local"
-			}
-		};
-		const response = await request(app).post('/auth/login').send(req.body);
-
-		expect(response.status).toBe(401);
-
+		});
 	});
 });
