@@ -21,19 +21,6 @@ jobs:
       matrix:
         node-version: [ 16.x, 18.x,20.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-    services:
-      postgres:
-        image: postgres:13
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: test
-        ports:
-          - 5432:5432
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
-    env:
-        DATABASE_URL: postgres://postgres:postgres@localhost:5432/test    
     
     steps:
     - uses: actions/checkout@v3
@@ -46,26 +33,6 @@ jobs:
 
     - name: Install Dependencies
       run: npm install --prefix recipe-frontend/
-
-    - name: Install Prisma CLI
-      run: npm install prisma --save-dev
-
-    - name: Install NC
-      run: sudo apt-get install -y netcat  
-
-    - name: Wait for PostgreSQL to start
-      run: |
-        for i in {1..10}; do
-          nc -z localhost 5432 && echo Success && exit 0
-          echo -n .
-          sleep 1
-        done
-        echo Failed waiting for Postgres && exit 1
-
-    - name: Run Prisma Migrate
-      env: 
-        DATABASE_URL: postgres://postgres:postgres@localhost:5432/test
-      run: npx prisma migrate dev --name init --preview-feature --schema recipe-backend/prisma/schema.prisma
 
     - name: Run FrontEndLint
       run: npm run lint --prefix recipe-frontend/
@@ -102,6 +69,26 @@ jobs:
 
     - name: Install Dependencies
       run: npm install --prefix recipe-backend/
+
+    - name: Install Prisma CLI
+      run: npm install prisma --save-dev
+
+    - name: Install NC
+      run: sudo apt-get install -y netcat  
+
+    - name: Wait for PostgreSQL to start
+      run: |
+        for i in {1..10}; do
+          nc -z localhost 5432 && echo Success && exit 0
+          echo -n .
+          sleep 1
+        done
+        echo Failed waiting for Postgres && exit 1
+
+    - name: Run Prisma Migrate
+      env: 
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432/test
+      run: npx prisma migrate dev --name init --preview-feature --schema recipe-backend/prisma/schema.prisma
 
     - name: Run BackendJest
       run: npm run test --prefix recipe-backend/
