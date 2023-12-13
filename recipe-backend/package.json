@@ -9,7 +9,9 @@
 		"see-dev-db": "dotenv -e .env.dev -- npx prisma studio",
 		"see-test-db": "dotenv -e .env.test -- npx prisma studio",
 		"drop-test-db": "dotenv -e .env.test -- ./reset_db-test.sh",
-		"drop-test-db-windows": "dotenv -e .env.test -- powershell ./reset_db-test.ps1"
+		"drop-test-db-windows": "dotenv -e .env.test -- powershell ./reset_db-test.ps1",
+		"migrate-test-db": "dotenv -e .env.test -- npx prisma migrate dev",
+		"migrate-dev-db": "dotenv -e .env.dev -- npx prisma migrate dev"
 	},
 	"keywords": [],
 	"author": "",
