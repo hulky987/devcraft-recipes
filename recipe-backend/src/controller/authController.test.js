@@ -1,6 +1,7 @@
 const { signupUser, loginUser } = require('./authController');
 const { signupUserModel, loginUserModel } = require('../models/userModel');
 const jwt = require('jsonwebtoken');
+const { log } = require('console');
 
 jest.mock('../models/userModel');
 jest.mock('jsonwebtoken');
@@ -24,10 +25,12 @@ signupUserModel.mockImplementation((name, email, password, loginMethod) => {
 loginUserModel.mockImplementation((email, password) => {
 	if (email === 'user1@example.com' && password === '123456') {
 		return {
-			id: 1,
-			name: 'User1',
-			email: 'user1@example.com',
-			password: '123456'
+			user: {
+				id: 1,
+				name: 'User1',
+				email: 'user1@example.com'
+			}
+
 		};
 	}
 
@@ -108,7 +111,6 @@ describe('authController', () => {
 			await loginUser(req, res);
 			expect(res.status).toHaveBeenCalledWith(200);
 			expect(res.json).toHaveBeenCalledWith({ message: 'User wurde erfolgreich eingeloggt!', token: 'token', user: { name: 'User1', email: 'user1@example.com' } });
-
 		});
 	});
 });
