@@ -35,7 +35,7 @@ jobs:
       run: npm install --prefix recipe-frontend/
 
     - name: Install Prisma CLI
-      run: npm install @prisma/cli --save-dev
+      run: npm install prisma --save-dev
 
     - name: Run Prisma Migrate
       run: npx prisma migrate dev --name init --preview-feature --schema recipe-backend/prisma/schema.prisma
