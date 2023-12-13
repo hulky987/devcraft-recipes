@@ -18,7 +18,7 @@ app.use((error, req, res, next) => {
 	res.status(500).send('Something broke!');
 });
 
-start(port);
+// start(port);
 
 function start(port) {
 	return app.listen(port, () => {
@@ -26,8 +26,9 @@ function start(port) {
 	});
 }
 
-function stop(server) {
-	server.close();
+if (require.main === module) {
+	// Startet den Server nur, wenn app.js direkt ausgeführt wird.
+	start(port);
 }
 
-module.exports = { app, start, stop };
+module.exports = { app, start };

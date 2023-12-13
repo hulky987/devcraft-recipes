@@ -2,7 +2,7 @@ const { signupUserModel, loginUserModel } = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 
 exports.signupUser = async (req, res) => {
-	console.log('[authController.js] signupUser: ', req.body);
+	// console.log('[authController.js] signupUser: ', req.body);
 	try {
 		const {
 			name,
@@ -32,7 +32,7 @@ exports.signupUser = async (req, res) => {
 				message: 'Es existiert bereits ein User mit dieser E-Mail!',
 			});
 		}
-		console.log('[authController.js] back from Model: ', newUser);
+		// console.log('[authController.js] back from Model: ', newUser);
 
 		// Wenn ein Github User erstellt wurde
 		// if (data.loginMethod === 'github') {
@@ -75,6 +75,7 @@ exports.loginUser = async (req, res) => {
 
 		// Versuche den Benutzer einzuloggen
 		const user = await loginUserModel(email, password);
+		console.log('[authController.js] back from model: ', user);
 
 		// Wenn der Login fehlschlägt (weil die E-Mail oder das Passwort falsch ist)
 		if (!user) {
