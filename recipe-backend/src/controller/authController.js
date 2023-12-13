@@ -74,17 +74,17 @@ exports.loginUser = async (req, res) => {
 		}
 
 		// Versuche den Benutzer einzuloggen
-		const response = await loginUserModel(email, password);
-		console.log('[authController.js] response: ', response);
+		const user = await loginUserModel(email, password);
+		console.log('[authController.js] response: ', user);
 
 		// Wenn der Login fehlschlägt (weil die E-Mail oder das Passwort falsch ist)
-		if (!response) {
+		if (!user) {
 			return res.status(401).json({
 				message: 'E-Mail oder Passwort ist falsch!',
 			});
 		}
-		const user = response.user;
-		console.log('[authController.js] back from model: ', user);
+		// const user = user.user;
+		// console.log('[authController.js] back from model: ', user);
 
 		// Erstelle einen neuen JWT
 		const token = jwt.sign(

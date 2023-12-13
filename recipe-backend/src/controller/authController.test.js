@@ -33,6 +33,8 @@ loginUserModel.mockImplementation((email, password) => {
 
 });
 
+jwt.sign.mockReturnValue('token');
+
 describe('authController', () => {
 	let req, res;
 
@@ -97,13 +99,15 @@ describe('authController', () => {
 		it('should return 200 if user logged in succesfully', async () => {
 			const req = {
 				body: {
+					id: 1,
+					name: 'User1',
 					email: 'user1@example.com',
 					password: '123456'
 				}
 			};
 			await loginUser(req, res);
 			expect(res.status).toHaveBeenCalledWith(200);
-			expect(res.json).toHaveBeenCalledWith({ message: 'User wurde erfolgreich eingeloggt!', token: undefined, user: { name: 'User1', email: 'user1@example.com' } });
+			expect(res.json).toHaveBeenCalledWith({ message: 'User wurde erfolgreich eingeloggt!', token: 'token', user: { name: 'User1', email: 'user1@example.com' } });
 
 		});
 	});
