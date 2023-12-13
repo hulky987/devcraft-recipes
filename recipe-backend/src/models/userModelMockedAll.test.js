@@ -6,7 +6,9 @@ um bestimmte Rückgabewerte zu simulieren.
 */
 
 // Importieren der benötigten Funktionen und Module
-const { test, expect, describe, it } = require('@jest/globals');
+
+const { expect, describe, it} = require('@jest/globals');
+
 const { loginUserModel } = require('./userModel');
 
 // Mocken der bcrypt Bibliothek, um die compareSync Funktion zu simulieren

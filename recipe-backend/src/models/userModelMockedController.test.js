@@ -44,12 +44,8 @@ afterAll((done) => {
 
 // Vor jedem Test leeren wir die Datenbank
 beforeEach(async () => {
-	await prisma.UserLocal.deleteMany(); // Löscht alle User-Einträge
-	// Setzt die Auto-Inkrementierung der ID zurück. Das geht nur mit einem rohen SQL-Befehl.
-	await prisma.$executeRaw`ALTER SEQUENCE "UserLocal_id_seq" RESTART WITH 1`;
-
 	// Erstellen eines einen Benutzers in der Datenbank
-	await prisma.UserLocal.create({
+	await prisma.userLocal.create({
 		data: {
 			id: mockUser.id,
 			name: mockUser.name,
@@ -60,6 +56,9 @@ beforeEach(async () => {
 });
 
 afterEach(async () => {
+	await prisma.userLocal.deleteMany(); // Löscht alle User-Einträge
+	// Setzt die Auto-Inkrementierung der ID zurück. Das geht nur mit einem rohen SQL-Befehl.
+	await prisma.$executeRaw`ALTER SEQUENCE "UserLocal_id_seq" RESTART WITH 1`;
 	await prisma.$disconnect();
 });
 
