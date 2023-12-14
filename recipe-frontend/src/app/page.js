@@ -1,3 +1,4 @@
+"use client"
 import Link from 'next/link';
 // import {NavBar} from "../components/NavBar";
 import Login from "../components/Login";
@@ -9,7 +10,7 @@ export default function Home() {
 
 	 axios.get("http://localhost:5000/recipes").then((response) => {
 console.log(response.data)
-setRecipes(response.data)
+setRecipes(response.data.recipes)
 	})
 
 	if(!recipes){
@@ -17,8 +18,6 @@ setRecipes(response.data)
 	}
 	return (
 		<div>
-			{/*<NavBar/>*/}
-			<Login/>
 			<ul>
 				{recipes.map((recipe, index) => {
 					return (
