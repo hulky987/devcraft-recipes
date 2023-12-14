@@ -1,23 +1,23 @@
-const {createRecipeModel, getAllRecipesModel,getRecipeByIdModel, deleteRecipeModel, updateRecipeModel} = require("../models/recipeModel");
+const { createRecipeModel, getAllRecipesModel, getRecipeByIdModel, deleteRecipeModel, updateRecipeModel } = require("../models/recipeModel");
 
 function checkIfIngredientsIsArrayOfObjectWithRequiredFields(ingredients) {
     console.log('[recipeController.js] checkIfIngredientsIsArrayOfObjectWithRequiredFields: ', ingredients)
     // check if ingredients is an array
     if (!Array.isArray(ingredients)) {
-        throw new Error('ingredients have to be an array.');
+        return false;
     }
     // check if array is empty
     if (ingredients.length === 0) {
-        throw new Error('ingredients have to contain at least one element.');
+        return false;
     }
     // check if every element is an object
     if (!ingredients.every(item => typeof item === 'object')) {
-        throw new Error('ingredients have to contain only objects.');
+        return false;
     }
     // check if every object has the required fields
     const requiredFields = ['amount', 'unit', 'name']; // Ersetze dies durch die tatsächlich erforderlichen Felder
     if (!ingredients.every(item => requiredFields.every(feld => feld in item))) {
-        throw new Error('ingredients have to contain the required fields.');
+        return false;
     }
     return true;
 }
@@ -35,14 +35,14 @@ exports.createRecipe = async (req, res) => {
         } = req.body;
 
         //Check if required fields are given
-        if (!name || !ingredients || !steps ) {
+        if (!name || !ingredients || !steps) {
             return res
                 .status(400)
                 .json({ message: 'Need name, steps, and ingredients for creating a recipe ' });
         }
 
         //check if ingredients is an array of objects with required fields
-        if(!checkIfIngredientsIsArrayOfObjectWithRequiredFields(ingredients)){
+        if (!checkIfIngredientsIsArrayOfObjectWithRequiredFields(ingredients)) {
             return res
                 .status(400)
                 .json({ message: 'ingredients have to be an array of objects with fields: amount,unit, name' });
@@ -62,7 +62,7 @@ exports.createRecipe = async (req, res) => {
         //return recipe
         res.status(201).json({
             message: 'recipe was created successfully!',
-          recipe: recipe,
+            recipe: recipe,
         });
     } catch (error) {
         console.error(error);
@@ -71,9 +71,9 @@ exports.createRecipe = async (req, res) => {
 };
 
 exports.deleteRecipe = async (req, res) => {
-    console.log('[recipeController.js] deleteRecipe: ', req)
     try {
-      const { id } = req.params.id
+        const id = parseInt(req.params.recipeId);
+        console.log('[recipeController.js] deleteRecipe: ', id)
 
         const response = await deleteRecipeModel(id);
         console.log('[recipeController] response: ', response);
@@ -97,7 +97,7 @@ exports.updateRecipe = async (req, res) => {
     console.log('[recipeController.js] updateRecipe: ', req.body)
     try {
 
-        const { id } = req.params.id
+        const id  = parseInt(req.params.recipeId);
 
         const {
             name,
@@ -109,21 +109,21 @@ exports.updateRecipe = async (req, res) => {
         } = req.body;
 
         //Check if required fields are given
-        if (!id ) {
+        if (!id) {
             return res
                 .status(404)
                 .json({ message: 'can not find recipe' });
         }
 
         //check if ingredients is an array of objects with required fields
-        if(ingredients && !checkIfIngredientsIsArrayOfObjectWithRequiredFields(ingredients)){
+        if (ingredients && !checkIfIngredientsIsArrayOfObjectWithRequiredFields(ingredients)) {
             return res
                 .status(400)
                 .json({ message: 'ingredients have to be an array of objects with fields: amount,unit, name' });
         }
 
         //updating
-        const updatedRecipe = await updateRecipeModel(id,name, steps, description, cookingTime, userId, ingredients);
+        const updatedRecipe = await updateRecipeModel(id, userId, name, ingredients, cookingTime, steps, description);
 
         if (!updatedRecipe) {
             return res.status(409).json({
@@ -145,7 +145,6 @@ exports.updateRecipe = async (req, res) => {
 };
 
 exports.getAllRecipes = async (req, res) => {
-    console.log('[recipeController.js] getAllRecipes: ', req)
     try {
 
         const allRecipes = await getAllRecipesModel();
@@ -160,7 +159,7 @@ exports.getAllRecipes = async (req, res) => {
 
         res.status(200).json({
             message: 'Recipes were found successfully!',
-            recipes:allRecipes
+            recipes: allRecipes
         });
 
     } catch (error) {
@@ -170,9 +169,8 @@ exports.getAllRecipes = async (req, res) => {
 };
 
 exports.getRecipeById = async (req, res) => {
-    console.log('[recipeController.js] getRecipeById: ', req)
     try {
-        const { id } = req.params.id
+        const id = parseInt(req.params.recipeId);
 
         const recipe = await getRecipeByIdModel(id);
 
@@ -186,7 +184,7 @@ exports.getRecipeById = async (req, res) => {
 
         res.status(200).json({
             message: 'Recipe was found successfully!',
-            recipe:recipe
+            recipe: recipe
         });
 
     } catch (error) {

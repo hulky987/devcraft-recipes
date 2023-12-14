@@ -123,6 +123,7 @@ getRecipeByIdModel = async (id) => {
             id
         }
     })
+    if (!recipe) return null;
     console.log("[RecipeModel] getRecipeByIdModel: ", recipe)
     return recipe
 }
