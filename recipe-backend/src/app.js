@@ -1,6 +1,7 @@
 // Import cors
 const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');
+const recipeRoutes = require('./routes/recipeRoutes');
 
 const express = require('express');
 require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` });
@@ -12,6 +13,7 @@ let port = process.env.NODE_ENV !== 'testserver' ? 5000 : 5001;
 app.use(cors());
 app.use(express.json());
 app.use('/auth', authRoutes);
+app.use('/recipes', recipeRoutes);
 
 app.use((error, req, res, next) => {
 	console.error(error.stack);

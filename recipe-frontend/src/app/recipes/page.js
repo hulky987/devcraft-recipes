@@ -35,7 +35,7 @@ export default function Recipes() {
 		// }).then((response) => loadData());
 
 		// Comment the following line to enable API access
-		setRecipes((currentRecipes) => [...currentRecipes, data]);
+		// setRecipes((currentRecipes) => [...currentRecipes, data]);
 	};
 
 	// Uncomment this to activate API access:
