@@ -6,7 +6,7 @@ const {
 	beforeEach,
 	afterEach,
 } = require('@jest/globals');
-const { loginUserModel } = require('../models/userModel');
+const { loginUserModel } = require('./userModel');
 const bcrypt = require('bcrypt');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
@@ -28,6 +28,25 @@ const mockUser = {
 };
 // Mockuser im Controller setzen
 loginUser.mockReturnValue(mockUser);
+
+beforeEach(async () => {
+	// Erstellen eines einen Benutzers in der Datenbank
+	await prisma.userLocal.create({
+		data: {
+			id: mockUser.id,
+			name: mockUser.name,
+			email: mockUser.email,
+			password: bcrypt.hashSync(mockUser.password, 10),
+		},
+	});
+});
+
+afterEach(async () => {
+	await prisma.userLocal.deleteMany(); // Löscht alle User-Einträge
+	// Setzt die Auto-Inkrementierung der ID zurück. Das geht nur mit einem rohen SQL-Befehl.
+	await prisma.$executeRaw`ALTER SEQUENCE "UserLocal_id_seq" RESTART WITH 1`;
+	await prisma.$disconnect();
+});
 
 let server;
 const port = 5001;
