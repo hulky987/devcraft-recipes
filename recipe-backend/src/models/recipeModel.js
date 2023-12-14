@@ -84,7 +84,7 @@ updateRecipeModel = async (id, userId, name, ingredients, cookingTime, steps, de
         }
     })
 
-    const updatedRecipeWithoutIngredients = await prisma.recipe.update({
+     await prisma.recipe.update({
         where: {
             id,
             userId
