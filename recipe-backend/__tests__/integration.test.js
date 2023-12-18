@@ -268,7 +268,7 @@ describe('POST /recipe', () => {
 
         expect(res.statusCode).toEqual(400);
         expect(res.body).toEqual({
-            message: 'Need name, steps, and ingredients for creating a recipe ',
+            message: "Name, steps, und ingredients werden benötigt zum erstellen",
         });
     });
 
@@ -282,7 +282,7 @@ describe('POST /recipe', () => {
 
         expect(res.statusCode).toEqual(400);
         expect(res.body).toEqual({
-            message: 'ingredients have to be an array of objects with fields: amount,unit, name',
+            message: 'Ingredients muss ein array aus Objekten mit den Feldern: amount,unit und name sein ',
         });
     });
 
@@ -296,7 +296,7 @@ describe('POST /recipe', () => {
 
         expect(res.statusCode).toEqual(400);
         expect(res.body).toEqual({
-            message: 'ingredients have to be an array of objects with fields: amount,unit, name',
+            message: 'Ingredients muss ein array aus Objekten mit den Feldern: amount,unit und name sein ',
         });
     });
 });
