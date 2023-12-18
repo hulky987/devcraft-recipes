@@ -1,4 +1,10 @@
-const { createRecipe,deleteRecipe,getAllRecipes,getRecipeById,updateRecipe } = require('../controller/recipeController');
+const {
+    createRecipe,
+    deleteRecipe,
+    getAllRecipes,
+    getRecipeById,
+    updateRecipe
+} = require('../controller/recipeController');
 
 const express = require('express');
 

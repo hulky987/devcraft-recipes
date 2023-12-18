@@ -1,21 +1,27 @@
-const { createRecipeModel, getAllRecipesModel, getRecipeByIdModel, deleteRecipeModel, updateRecipeModel } = require("../models/recipeModel");
+const {
+    createRecipeModel,
+    getAllRecipesModel,
+    getRecipeByIdModel,
+    deleteRecipeModel,
+    updateRecipeModel
+} = require("../models/recipeModel");
 
 function checkIfIngredientsIsArrayOfObjectWithRequiredFields(ingredients) {
     console.log('[recipeController.js] checkIfIngredientsIsArrayOfObjectWithRequiredFields: ', ingredients)
-    // check if ingredients is an array
+    // Ingredients soll ein Array sein
     if (!Array.isArray(ingredients)) {
         return false;
     }
-    // check if array is empty
+    // Ingredients soll nicht leer sein
     if (ingredients.length === 0) {
         return false;
     }
-    // check if every element is an object
+    // Alle Elemente in Ingredients sollen Objekte sein
     if (!ingredients.every(item => typeof item === 'object')) {
         return false;
     }
-    // check if every object has the required fields
-    const requiredFields = ['amount', 'unit', 'name']; // Ersetze dies durch die tatsächlich erforderlichen Felder
+    // Alle Objekte in Ingredients sollen die erforderlichen Felder haben
+    const requiredFields = ['amount', 'unit', 'name'];
     if (!ingredients.every(item => requiredFields.every(feld => feld in item))) {
         return false;
     }
@@ -38,35 +44,35 @@ exports.createRecipe = async (req, res) => {
         if (!name || !ingredients || !steps) {
             return res
                 .status(400)
-                .json({ message: 'Need name, steps, and ingredients for creating a recipe ' });
+                .json({message: 'Name, steps, und ingredients werden benötigt zum erstellen'});
         }
 
-        //check if ingredients is an array of objects with required fields
+        //Funktion checkIfIngredientsIsArrayOfObjectWithRequiredFields überprüft ob ingredients ein Array von Objekten ist
         if (!checkIfIngredientsIsArrayOfObjectWithRequiredFields(ingredients)) {
             return res
                 .status(400)
-                .json({ message: 'ingredients have to be an array of objects with fields: amount,unit, name' });
+                .json({message: 'Ingredients muss ein array aus Objekten mit den Feldern: amount,unit und name sein '});
         }
 
-        //creating recipe
+        //Rezept erstellen
         const recipe = await createRecipeModel(name, steps, description, cookingTime, userId, ingredients);
 
         if (!recipe) {
             return res.status(409).json({
-                message: 'Recipe could not be created!',
+                message: 'Rezept konnte nicht erstellt werden!',
             });
         }
 
         console.log('[recipeController.js] back from Model: ', recipe);
 
-        //return recipe
+        //Erstelltes Rezept zurücksenden
         res.status(201).json({
-            message: 'recipe was created successfully!',
+            message: 'Rezept wurde erfolgreich erstellt!',
             recipe: recipe,
         });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Internal Server Error!' });
+        res.status(500).json({message: 'Internal Server Error!'});
     }
 };
 
@@ -75,29 +81,32 @@ exports.deleteRecipe = async (req, res) => {
         const id = parseInt(req.params.recipeId);
         console.log('[recipeController.js] deleteRecipe: ', id)
 
+
+        //Löschen vom Rezept im Model
         const response = await deleteRecipeModel(id);
         console.log('[recipeController] response: ', response);
 
+
         if (!response) {
             return res.status(401).json({
-                message: 'Recipe could not be deleted!',
+                message: 'Rezepte konnte nicht gelöscht werden',
             });
         }
 
         res.status(200).json({
-            message: 'Recipe was deleted successfully!',
+            message: 'Rezept erfolgreich gelöscht',
         });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Internal Server Error!' });
+        res.status(500).json({message: 'Internal Server Error!'});
     }
 };
 
 exports.updateRecipe = async (req, res) => {
     console.log('[recipeController.js] updateRecipe: ', req.body)
     try {
-
-        const id  = parseInt(req.params.recipeId);
+        //Holen der id aus den Parametern
+        const id = parseInt(req.params.recipeId);
 
         const {
             name,
@@ -108,88 +117,90 @@ exports.updateRecipe = async (req, res) => {
             ingredients,
         } = req.body;
 
-        //Check if required fields are given
+        //Überprüfung ob alle notwendigen Eingaben vorhanden sind
         if (!id) {
             return res
                 .status(404)
-                .json({ message: 'can not find recipe' });
+                .json({message: 'Rezept konnte nicht gefunden werden'});
         }
 
-        //check if ingredients is an array of objects with required fields
+        //Funktion checkIfIngredientsIsArrayOfObjectWithRequiredFields überprüft ob ingredients ein Array von Objekten ist
         if (ingredients && !checkIfIngredientsIsArrayOfObjectWithRequiredFields(ingredients)) {
             return res
                 .status(400)
-                .json({ message: 'ingredients have to be an array of objects with fields: amount,unit, name' });
+                .json({message: 'Ingredients muss ein array aus Objekten mit den Feldern: amount,unit und name sein '});
         }
 
-        //updating
+        //Rezept wird aktualisiert
         const updatedRecipe = await updateRecipeModel(id, userId, name, ingredients, cookingTime, steps, description);
 
         if (!updatedRecipe) {
             return res.status(409).json({
-                message: 'Recipe could not be updated!',
+                message: 'Rezept konnte nicht aktualisiert werden',
             });
         }
 
         console.log('[recipeController] back from Model: ', updatedRecipe);
 
-        //return recipe
+        //aktualisiertes Rezept wird an den user zurückgegeben
         res.status(201).json({
-            message: 'recipe was updated successfully!',
+            message: 'Rezept erfolgreich aktualisiert',
             recipe: updatedRecipe,
         });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Internal Server Error!' });
+        res.status(500).json({message: 'Internal Server Error!'});
     }
 };
 
 exports.getAllRecipes = async (req, res) => {
     try {
-
+// Rezepte von der Datenbank holen
         const allRecipes = await getAllRecipesModel();
 
         console.log('[authController] response: ', allRecipes);
 
+
         if (!allRecipes) {
             return res.status(401).json({
-                message: 'No recipes found!',
+                message: 'Kein Rezept gefunden',
             });
         }
 
         res.status(200).json({
-            message: 'Recipes were found successfully!',
+            message: 'Rezepte wurden gefunden',
             recipes: allRecipes
         });
 
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Internal Server Error!' });
+        res.status(500).json({message: 'Internal Server Error!'});
     }
 };
 
 exports.getRecipeById = async (req, res) => {
     try {
+        //Holen der id aus den Parametern
         const id = parseInt(req.params.recipeId);
-
+        // Rezept asu der DB holen
         const recipe = await getRecipeByIdModel(id);
 
         console.log('[recipeController] response: ', recipe);
 
         if (!recipe) {
             return res.status(404).json({
-                message: 'No recipe found!',
+                message: 'Kein Rezept gefunden',
             });
         }
 
         res.status(200).json({
-            message: 'Recipe was found successfully!',
+            message: 'Rezept erfolgreich gefunden',
             recipe: recipe
         });
 
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Internal Server Error!' });
+        res.status(500).json({message: 'Internal Server Error!'});
     }
 
 }
