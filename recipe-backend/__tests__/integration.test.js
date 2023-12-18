@@ -349,7 +349,7 @@ describe('GET /recipes', () => {
 
         expect(res.statusCode).toEqual(404);
         expect(res.body).toEqual({
-            message: 'No recipe found!'
+            message: 'Kein Rezept gefunden'
         });
     });
 });
