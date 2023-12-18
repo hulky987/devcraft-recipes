@@ -1,4 +1,4 @@
-const { signupUser, loginUser } = require('../controller/authController');
+const {signupUser, loginUser} = require('../controller/authController');
 
 const express = require('express');
 
