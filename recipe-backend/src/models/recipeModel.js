@@ -9,16 +9,18 @@ async function createManyIngredients(ingredients, recipeId) {
             unit: ingredient.unit ?? ""
         }
     })
-    await ingredientsSafeForCreating.forEach(ingredient => {
-        prisma.ingredient.create({
-            data: {
+    console.log("[RecipeModel] createManyIngredients: ", ingredientsSafeForCreating)
+    const ingredientsAfterCreation = await prisma.ingredient.createMany({
+        data: ingredientsSafeForCreating.map(ingredient => {
+            return {
                 recipeId: recipeId,
-                unit: ingredient.units,
+                unit: ingredient.unit,
                 name: ingredient.name,
                 amount: ingredient.amount,
             }
         })
     })
+    console.log("[RecipeModel] IngredientsAfterCreation: ", ingredientsAfterCreation)
 
     return true
 
@@ -48,6 +50,7 @@ createRecipeModel = async (name, steps, description, cookingTime, userId, ingred
         }
     })
 
+
     if (!recipe) return null
     console.log("[RecipeModel] createRecipeModel: ", recipe)
     return recipe
@@ -56,7 +59,11 @@ createRecipeModel = async (name, steps, description, cookingTime, userId, ingred
 
 
 getAllRecipesModel = async () => {
-    const recipes = await prisma.recipe.findMany()
+    const recipes = await prisma.recipe.findMany({
+        include: {
+            Ingredients: true
+        }
+    })
 
     if (!recipes) {
         return null;
