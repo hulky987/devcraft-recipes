@@ -10,7 +10,7 @@ export default function Home() {
 		// Get recipes from API with axios
 		async function getRecipes() {
 			const response = await axios.get('http://localhost:5000/recipes');
-			console.log('[Home] response.data: ', response.data);
+			// console.log('[Home] response.data: ', response.data);
 			if (Array.isArray(response.data.recipes.recipes)) {
 				setRecipes(response.data.recipes.recipes);
 			} else {
@@ -22,19 +22,22 @@ export default function Home() {
 		}
 		getRecipes();
 	}, []);
-
+	console.log('[Home] recipes: ', recipes)
 	return !recipes ? (
 		<div>loading...</div>
 	) : (
 		<div>
-			<ul>
+			<ul style={{display:"flex", flexDirection:"column"}}>
 				{recipes.map((recipe, index) => (
 					<li key={index}>
 						<Link href={`/recipes/${recipe.id}`}>
-							{recipe.name}
-							{recipe.description}
-							{recipe.Steps}
-							{recipe.ingredients}
+							<p>{recipe.name}</p>
+							<p>{recipe.description}</p>
+							<p>{recipe.Steps}</p>
+						{recipe.Ingredients.map((ingredient)=>{
+								return <p>{`${ingredient.amount}  ${ingredient.unit}  ${ingredient.name}`}</p>
+
+							})}
 						</Link>
 					</li>
 				))}
