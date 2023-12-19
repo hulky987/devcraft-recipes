@@ -35,7 +35,7 @@ export default function Home() {
 							<p>{recipe.description}</p>
 							<p>{recipe.Steps}</p>
 						{recipe.Ingredients.map((ingredient)=>{
-								return <p>{`${ingredient.amount}  ${ingredient.unit}  ${ingredient.name}`}</p>
+								return <p key={ingredient.id}>{`${ingredient.amount}  ${ingredient.unit}  ${ingredient.name}`}</p>
 
 							})}
 						</Link>
