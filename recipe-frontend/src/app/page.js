@@ -1,33 +1,44 @@
-"use client"
+'use client';
 import Link from 'next/link';
-import axios from "axios";
-import {useState} from "react";
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 export default function Home() {
+	const [recipes, setRecipes] = useState(null);
 
-    const [recipes, setRecipes] = useState(null)
+	useEffect(() => {
+		// Get recipes from API with axios
+		async function getRecipes() {
+			const response = await axios.get('http://localhost:5000/recipes');
+			console.log('[Home] response.data: ', response.data);
+			if (Array.isArray(response.data.recipes.recipes)) {
+				setRecipes(response.data.recipes.recipes);
+			} else {
+				console.error(
+					'response.data.recipes is not an array:',
+					response.data.recipes
+				);
+			}
+		}
+		getRecipes();
+	}, []);
 
-    axios.get("http://localhost:5000/recipes").then((response) => {
-        console.log(response.data)
-        setRecipes(response.data.recipes)
-    })
-
-    if (!recipes) {
-        return <div>loading...</div>
-    }
-    return (
-        <div>
-            <ul>
-                {recipes.map((recipe, index) => {
-                    return (
-                        <li key={index}>
-                            <Link href={`/recipes/${recipe.id}`}>
-                                <a>{recipe.name}</a>
-                            </Link>
-                        </li>
-                    );
-                })}
-            </ul>
-        </div>
-    );
+	return !recipes ? (
+		<div>loading...</div>
+	) : (
+		<div>
+			<ul>
+				{recipes.map((recipe, index) => (
+					<li key={index}>
+						<Link href={`/recipes/${recipe.id}`}>
+							{recipe.name}
+							{recipe.description}
+							{recipe.Steps}
+							{recipe.ingredients}
+						</Link>
+					</li>
+				))}
+			</ul>
+		</div>
+	);
 }
